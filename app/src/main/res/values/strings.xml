@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ComputerApplicationDesign</string>
+    <string name="product_name">제품명</string>
 </resources>
