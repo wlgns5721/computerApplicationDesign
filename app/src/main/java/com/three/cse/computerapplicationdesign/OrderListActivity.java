@@ -22,10 +22,10 @@ public class OrderListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_list);
 
-        productID = (TextView)findViewById(R.id.order_list_product_id);
-        productName = (TextView)findViewById(R.id.order_list_product_name);
-        productPrice = (TextView)findViewById(R.id.order_list_product_price);
-        productQuantity = (TextView)findViewById(R.id.order_list_product_quantity);
+//        productID = (TextView)findViewById(R.id.order_list_product_id);
+//        productName = (TextView)findViewById(R.id.order_list_product_name);
+//        productPrice = (TextView)findViewById(R.id.order_list_product_price);
+//        productQuantity = (TextView)findViewById(R.id.order_list_product_quantity);
 
         orderListResultButton = (Button)findViewById(R.id.order_list_result);
 
