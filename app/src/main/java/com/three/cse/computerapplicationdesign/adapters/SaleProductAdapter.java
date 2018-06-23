@@ -40,21 +40,25 @@ public class SaleProductAdapter extends RecyclerView.Adapter<SaleProductViewHold
 
     @Override
     public void onBindViewHolder(@NonNull SaleProductViewHolder holder, final int position) {
+        final SaleProduct product = mProductList.get(position);
+        holder.getBinding().tvSaleProductName.setText(product.getProductname());
+        holder.getBinding().tvSaleProductInfo.setText("가격 : "+product.getPrice()+"원      수량 : "+product.getCount()+"개");
         holder.getBinding().btnModifyProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SaleProduct product = mProductList.get(position);
+
                 Intent intent = new Intent(mContext, ModifySaleProductActivity.class);
                 intent.putExtra("product", (Serializable) product);
                 mContext.startActivity(intent);
             }
         });
+
     }
 
     public void addProduct(SaleProduct product) {
         mProductList.add(product);
     }
-
+    public void clearProductList() {mProductList.clear();}
     @Override
     public int getItemCount() {
         return mProductList.size();

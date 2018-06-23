@@ -10,16 +10,16 @@ import com.google.gson.annotations.SerializedName;
 public class GeneralResponse {
     @SerializedName("message")
     @Expose
-    private Integer message;
+    private String message;
     @SerializedName("status")
     @Expose
     private Integer status;
 
-    public Integer getMessage() {
+    public String getMessage() {
         return message;
     }
 
-    public void setMessage(Integer message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 

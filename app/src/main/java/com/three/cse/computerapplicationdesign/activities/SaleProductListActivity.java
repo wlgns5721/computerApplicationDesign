@@ -2,8 +2,10 @@ package com.three.cse.computerapplicationdesign.activities;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
@@ -23,35 +25,49 @@ public class SaleProductListActivity extends AppCompatActivity {
     private ActivityProductListBinding mBinding;
     private SaleProductAdapter mAdapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_product_list);
         mAdapter = new SaleProductAdapter();
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.lv_product_list);
-
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.lv_product_list);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
+        mBinding.progressbar.setVisibility(View.GONE);
 
+        mBinding.btnAddProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SaleProductListActivity.this, RegisterSaleProductActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateProductList();
+    }
+
+    private void updateProductList() {
+        mBinding.progressbar.setVisibility(View.VISIBLE);
         APIClient.getInstance().create(LoadSaleProductRequest.class).getProductList()
                 .enqueue(new Callback<SaleProductResponse>() {
                     @Override
                     public void onResponse(Call<SaleProductResponse> call, Response<SaleProductResponse> response) {
-
-                        if(response.body()!=null) {
+                        if (response.isSuccessful()) {
+                            mAdapter.clearProductList();
                             for (int i = 0; i < response.body().getSaleProduct().size(); i++)
                                 mAdapter.addProduct(response.body().getSaleProduct().get(i));
-                        }
-                        else
-                            Toast.makeText(getApplicationContext(),"서버에 연결할 수 없습니다.",Toast.LENGTH_LONG).show();
-                        //UI Thread에서 notifyDataSetChanged를 호출해야 정상적으로 화면 갱신
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                mAdapter.notifyDataSetChanged();
-                            }
-                        });
-
+                            mBinding.progressbar.setVisibility(View.GONE);
+                            mAdapter.notifyDataSetChanged();
+                        } else
+                            Toast.makeText(getApplicationContext(), "서버에 연결할 수 없습니다.", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -59,13 +75,5 @@ public class SaleProductListActivity extends AppCompatActivity {
 
                     }
                 });
-        mBinding.btnAddProduct.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SaleProductListActivity.this, RegisterSaleProductActivity.class);
-                finish();
-                startActivity(intent);
-            }
-        });
     }
 }

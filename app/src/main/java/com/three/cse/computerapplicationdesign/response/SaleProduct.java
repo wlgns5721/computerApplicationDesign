@@ -3,12 +3,14 @@ package com.three.cse.computerapplicationdesign.response;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by Ji Hoon on 2018-06-22.
  */
 
 
-public class SaleProduct {
+public class SaleProduct implements Serializable {
 
     @SerializedName("productid")
     @Expose

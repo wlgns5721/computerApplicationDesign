@@ -26,11 +26,22 @@ public class ModifySaleProductActivity extends AppCompatActivity {
         Intent intent = getIntent();
         SaleProduct product = (SaleProduct) intent.getSerializableExtra("product");
         mBinding = DataBindingUtil.setContentView(this,R.layout.activity_register_product);
+        mBinding.btnRegisterProduct.setVisibility(View.GONE);
+        mBinding.tvDetailImage.setVisibility(View.GONE);
+        mBinding.edtRegisterProductName.setText(product.getProductname());
+        mBinding.edtRegisterProductPrice.setText(product.getPrice());
+        mBinding.edtRegisterProductCount.setText(product.getCount());
+        mBinding.edtOption1.setText(product.getOption1());
+        mBinding.edtOption1Price.setText(product.getOption1price());
+        mBinding.edtOption2.setText(product.getOption2());
+        mBinding.edtOption2Price.setText(product.getOption2price());
+        mBinding.edtOption3.setText(product.getOption3());
+        mBinding.edtOption3Price.setText(product.getOption3price());
         final String productId = product.getProductid();
         mBinding.btnRegisterProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                APIClient.getInstance().create(ModifySaleProductRequest.class).modifyProduct(productId,
+                APIClient.getInstance().create(ModifySaleProductRequest.class).modifyProduct(Integer.parseInt(productId),
                         mBinding.edtRegisterProductName.getText().toString(),
                         mBinding.edtRegisterProductPrice.getText().toString(),
                         mBinding.edtRegisterProductCount.getText().toString(),
@@ -43,15 +54,19 @@ public class ModifySaleProductActivity extends AppCompatActivity {
                         .enqueue(new Callback<GeneralResponse>() {
                             @Override
                             public void onResponse(Call<GeneralResponse> call, Response<GeneralResponse> response) {
-                                Toast.makeText(getApplicationContext(),"성공적으로 등록되었습니다.",Toast.LENGTH_LONG).show();
-                                finish();
-                                Intent intent = new Intent(ModifySaleProductActivity.this,SaleProductListActivity.class);
-                                startActivity(intent);
+                                if(response.isSuccessful()) {
+                                    Toast.makeText(getApplicationContext(), "성공적으로 등록되었습니다.", Toast.LENGTH_LONG).show();
+                                    finish();
+                                    Intent intent = new Intent(ModifySaleProductActivity.this, SaleProductListActivity.class);
+                                    startActivity(intent);
+                                }
+                                else
+                                    Toast.makeText(getApplicationContext(),"서버에 연결할 수 없습니다.",Toast.LENGTH_LONG).show();
                             }
 
                             @Override
                             public void onFailure(Call<GeneralResponse> call, Throwable t) {
-
+                                Toast.makeText(getApplicationContext(),"fail.",Toast.LENGTH_LONG).show();
                             }
                         });
             }

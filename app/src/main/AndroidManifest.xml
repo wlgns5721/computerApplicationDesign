@@ -19,8 +19,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activities.MainActivity" />
         <activity
-            android:name=".activities.RegisterSaleProductActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:name=".activities.RegisterSaleProductActivity"></activity>
         <activity android:name=".activities.SaleProductListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

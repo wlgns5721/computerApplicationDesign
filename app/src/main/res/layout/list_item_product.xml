@@ -10,6 +10,7 @@
         android:layout_marginBottom="10dp"
         android:layout_weight="1">
         <ImageView
+            android:id="@+id/iv_thumbnail"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/plus"/>
@@ -20,11 +21,13 @@
         android:layout_weight="5"
         android:orientation="vertical">
         <TextView
+            android:id="@+id/tv_sale_product_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="제품 이름"
             android:textSize = "20dp"/>
         <TextView
+            android:id="@+id/tv_sale_product_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="가격 : 10000원    수량 : 10개"/>

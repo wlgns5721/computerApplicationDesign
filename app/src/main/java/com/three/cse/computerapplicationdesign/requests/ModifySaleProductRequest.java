@@ -6,6 +6,8 @@ import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 /**
  * Created by Ji Hoon on 2018-06-23.
@@ -13,8 +15,9 @@ import retrofit2.http.POST;
 
 public interface ModifySaleProductRequest {
     @FormUrlEncoded
-    @POST("/registerproductlist")
-    Call<GeneralResponse> modifyProduct(@Field("productid") String productId,
+    @PUT("/correctionproduct/{productid}")
+    Call<GeneralResponse> modifyProduct(
+                                        @Path("productid") Integer productid,
                                         @Field("productname") String productName,
                                         @Field("price") String price,
                                         @Field("count") String count,
