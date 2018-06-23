@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,14 +28,14 @@ import retrofit2.Response;
 
 import static java.security.AccessController.getContext;
 
-public class RegisterSaleProductActivity extends AppCompatActivity {
+public class RegisterSaleProductActivity extends BaseActivity {
     private ActivityRegisterProductBinding mBinding;
     private String mFilePath = null;
     private final int PICK_IMAGE = 100;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register_product);
+        actionBar.setTitle("제품 정보 등록");
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_register_product);
 
         mBinding.btnRegisterImage.setOnClickListener(new View.OnClickListener() {
