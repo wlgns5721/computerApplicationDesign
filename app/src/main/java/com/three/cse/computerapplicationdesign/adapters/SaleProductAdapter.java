@@ -12,7 +12,6 @@ import com.three.cse.computerapplicationdesign.activities.ModifySaleProductActiv
 import com.three.cse.computerapplicationdesign.databinding.ListItemProductBinding;
 import com.three.cse.computerapplicationdesign.holders.SaleProductViewHolder;
 import com.three.cse.computerapplicationdesign.response.SaleProduct;
-import com.three.cse.computerapplicationdesign.response.SaleProductResponse;
 
 import java.io.Serializable;
 import java.util.ArrayList;

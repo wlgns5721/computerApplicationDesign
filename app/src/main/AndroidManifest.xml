@@ -17,18 +17,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MainActivity"></activity>
+        <activity android:name=".activities.MainActivity" />
         <activity
             android:name=".activities.RegisterSaleProductActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-
-        </activity>
-        <activity android:name=".activities.SaleProductListActivity" >
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+        <activity android:name=".activities.SaleProductListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>(
+            </intent-filter>
+            (
         </activity>
         <activity android:name=".activities.ModifySaleProductActivity"></activity>
     </application>

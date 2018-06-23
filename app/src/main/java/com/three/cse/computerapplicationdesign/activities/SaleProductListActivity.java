@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
@@ -27,14 +28,30 @@ public class SaleProductListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_product_list);
         mAdapter = new SaleProductAdapter();
+        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.lv_product_list);
+
+        recyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
 
         APIClient.getInstance().create(LoadSaleProductRequest.class).getProductList()
                 .enqueue(new Callback<SaleProductResponse>() {
                     @Override
                     public void onResponse(Call<SaleProductResponse> call, Response<SaleProductResponse> response) {
-                        Toast.makeText(getApplicationContext(),"hi",Toast.LENGTH_LONG).show();
-                        for (int i = 0; i < response.body().getSaleProduct().size(); i++)
-                            mAdapter.addProduct(response.body().getSaleProduct().get(i));
+
+                        if(response.body()!=null) {
+                            for (int i = 0; i < response.body().getSaleProduct().size(); i++)
+                                mAdapter.addProduct(response.body().getSaleProduct().get(i));
+                        }
+                        else
+                            Toast.makeText(getApplicationContext(),"서버에 연결할 수 없습니다.",Toast.LENGTH_LONG).show();
+                        //UI Thread에서 notifyDataSetChanged를 호출해야 정상적으로 화면 갱신
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mAdapter.notifyDataSetChanged();
+                            }
+                        });
+
                     }
 
                     @Override
@@ -45,7 +62,7 @@ public class SaleProductListActivity extends AppCompatActivity {
         mBinding.btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SaleProductListActivity.this, ModifySaleProductActivity.class);
+                Intent intent = new Intent(SaleProductListActivity.this, RegisterSaleProductActivity.class);
                 finish();
                 startActivity(intent);
             }

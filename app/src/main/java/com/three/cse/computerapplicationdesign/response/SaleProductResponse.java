@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 public class SaleProductResponse {
-    @SerializedName("saleProduct")
+    @SerializedName("message")
     @Expose
     private List<SaleProduct> saleProduct = null;
     @SerializedName("status")
