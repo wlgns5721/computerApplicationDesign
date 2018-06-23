@@ -2,6 +2,8 @@ package com.three.cse.computerapplicationdesign.activities;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,12 +20,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ModifySaleProductActivity extends AppCompatActivity {
+public class ModifySaleProductActivity extends BaseActivity {
     private ActivityRegisterProductBinding mBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
+        actionBar.setTitle("제품 정보 수정");
+
         SaleProduct product = (SaleProduct) intent.getSerializableExtra("product");
         mBinding = DataBindingUtil.setContentView(this,R.layout.activity_register_product);
         mBinding.btnRegisterProduct.setVisibility(View.GONE);

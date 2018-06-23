@@ -1,7 +1,10 @@
 package com.three.cse.computerapplicationdesign.activities;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SaleProductListActivity extends AppCompatActivity {
+public class SaleProductListActivity extends BaseActivity {
     private ActivityProductListBinding mBinding;
     private SaleProductAdapter mAdapter;
 
@@ -29,6 +32,7 @@ public class SaleProductListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        actionBar.setTitle("판매자 페이지");
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_product_list);
         mAdapter = new SaleProductAdapter();
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.lv_product_list);
@@ -76,4 +80,6 @@ public class SaleProductListActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
 }
