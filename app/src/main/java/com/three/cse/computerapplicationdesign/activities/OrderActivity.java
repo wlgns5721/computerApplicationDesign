@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import com.three.cse.computerapplicationdesign.R;
 import com.three.cse.computerapplicationdesign.requests.OrderRequest;
+import com.three.cse.computerapplicationdesign.response.DetailInfo;
 import com.three.cse.computerapplicationdesign.response.SearchResult;
 import com.three.cse.computerapplicationdesign.response.SuccessResponse;
 import com.three.cse.computerapplicationdesign.utils.APIClient;
@@ -17,14 +18,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class OrderActivity extends BaseActivity {
-    private SearchResult product;
+    private DetailInfo product;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
 
         Intent intent = new Intent(this.getIntent());
-        product = (SearchResult)intent.getSerializableExtra("product");
+        product = (DetailInfo)intent.getSerializableExtra("product");
 
         TextView itemName_text = (TextView) findViewById(R.id.itemname_text);
         TextView itemCount_text = (TextView) findViewById(R.id.itemcount_text);

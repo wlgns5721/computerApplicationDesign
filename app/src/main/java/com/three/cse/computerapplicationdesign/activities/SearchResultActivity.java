@@ -1,5 +1,7 @@
 package com.three.cse.computerapplicationdesign.activities;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,13 +14,16 @@ import android.widget.Toast;
 
 import com.three.cse.computerapplicationdesign.R;
 import com.three.cse.computerapplicationdesign.adapters.SearchAdapter;
+import com.three.cse.computerapplicationdesign.requests.DownloadImageRequest;
 import com.three.cse.computerapplicationdesign.requests.SearchRequest;
 import com.three.cse.computerapplicationdesign.response.SearchResponse;
 import com.three.cse.computerapplicationdesign.response.SearchResult;
 import com.three.cse.computerapplicationdesign.utils.APIClient;
 
+import java.io.IOException;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -89,14 +94,42 @@ public class SearchResultActivity extends BaseActivity {
                     @Override
                     public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
                         List<List<String>> searchResultList = response.body().getMessage();
-                        if(searchResultList.size()==0)
+                        final int size = searchResultList.size();
+                        if(size==0)
                             Toast.makeText(getApplicationContext(),"검색 결과가 없습니다.",Toast.LENGTH_LONG).show();
-                        for(int i=0; i<searchResultList.size(); i++) {
-                            SearchResult searchResult = new SearchResult(searchResultList.get(i));
-                            mAdapter.addSearchInfo(searchResult);
+                        final int[] count = {0};
+                        for(int i=0; i<size; i++) {
+                            final int index = i;
+                            final SearchResult searchResult = new SearchResult(searchResultList.get(i));
+                            APIClient.getInstance().create(DownloadImageRequest.class).downloadImageRequest(searchResult.getProductid())
+                                    .enqueue(new Callback<ResponseBody>() {
+                                        @Override
+                                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                            try {
+                                                byte[] bytes = response.body().bytes();
+                                                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                                                mAdapter.addImage(bitmap);
+                                                mAdapter.addSearchInfo(searchResult);
+
+                                                count[0]++;
+                                                if(count[0]==size) {
+                                                    progressBar.setVisibility(View.GONE);
+                                                    mAdapter.notifyDataSetChanged();
+                                                }
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            }
+
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                                        }
+                                    });
+
                         }
-                        progressBar.setVisibility(View.GONE);
-                        mAdapter.notifyDataSetChanged();
+
                     }
 
                     @Override
