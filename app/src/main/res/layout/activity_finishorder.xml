@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FinshOrderActivity">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:layout_above="@+id/successmessage_text"
+        android:id="@+id/productname_text"
+        />
+    <TextView
+        android:id="@+id/successmessage_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/toMain_btn"
+        android:layout_marginBottom="15dp"
+        android:textSize="20dp"
+        android:text="order success!"/>
+
+    <Button
+        android:id="@+id/toMain_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:text="to Main"
+        />
+
+</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

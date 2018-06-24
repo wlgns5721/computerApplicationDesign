@@ -4,6 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchResultActivity">
+    tools:context=".activities.SearchResultActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <EditText
+            android:id="@+id/searchString_text"
+            android:layout_width="298dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/search_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/searchString_text"
+            android:text = "search"/>
+
+
+        <GridView
+            android:id="@+id/gridView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnWidth="100dp"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="10dp"
+            android:numColumns="auto_fit"
+            android:layout_below="@id/searchString_text">
+        </GridView>
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
