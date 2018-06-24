@@ -24,7 +24,7 @@ public class SearchResultActivity extends BaseActivity {
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(SearchActivity.this, SearchActivity.class);
+                Intent intent = new Intent(SearchResultActivity.this, SearchResultActivity.class);
                 intent.putExtra("searchString", String.valueOf(searchString_text.getText()));
                 startActivity(intent);
             }
@@ -48,7 +48,7 @@ public class SearchResultActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 //tv.setText("position : " + position);
-                Intent intent = new Intent(SearchActivity.this, ProductInfoActivity.class);
+                Intent intent = new Intent(SearchResultActivity.this, ProductInfoActivity.class);
                 intent.putExtra("itemID", position); // item id pass
                 startActivity(intent);
             }
