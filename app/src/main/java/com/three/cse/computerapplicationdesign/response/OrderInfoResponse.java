@@ -19,7 +19,7 @@ public class OrderInfoResponse {
     private Integer status;
     public List<OrderInfo> getMessage() {
         return message;
-    }
+    } // 제품 주문 정보 가져옴
 
     public Integer getStatus() {
         return status;

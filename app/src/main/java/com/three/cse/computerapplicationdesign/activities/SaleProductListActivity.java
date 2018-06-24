@@ -44,9 +44,6 @@ public class SaleProductListActivity extends BaseActivity {
         mAdapter.notifyDataSetChanged();
         mBinding.progressbar.setVisibility(View.GONE);
 
-        //test code
-        RequestManager.getInstance().requestOrderInfo(getApplicationContext());
-
 
         mBinding.btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override

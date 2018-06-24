@@ -37,7 +37,7 @@ public class ProductQnaActivity extends AppCompatActivity {
             }
         });
 
-        productQnaWebView.loadUrl("https://www.naver.com/");
+        productQnaWebView.loadUrl("hhttp://ddovobb69.dothome.co.kr/productQNA");
 
     }
 
