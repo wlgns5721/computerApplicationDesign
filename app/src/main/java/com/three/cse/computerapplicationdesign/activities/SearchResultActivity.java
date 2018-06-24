@@ -2,6 +2,18 @@ package com.three.cse.computerapplicationdesign.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.view.View;
+import android.content.Intent;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.three.cse.computerapplicationdesign.R;
 
@@ -24,7 +36,7 @@ public class SearchResultActivity extends BaseActivity {
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(SearchActivity.this, SearchActivity.class);
+                Intent intent = new Intent(SearchResultActivity.this, SearchResultActivity.class);
                 intent.putExtra("searchString", String.valueOf(searchString_text.getText()));
                 startActivity(intent);
             }
@@ -48,7 +60,7 @@ public class SearchResultActivity extends BaseActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 //tv.setText("position : " + position);
-                Intent intent = new Intent(SearchActivity.this, ProductInfoActivity.class);
+                Intent intent = new Intent(SearchResultActivity.this, ProductInfoActivity.class);
                 intent.putExtra("itemID", position); // item id pass
                 startActivity(intent);
             }
