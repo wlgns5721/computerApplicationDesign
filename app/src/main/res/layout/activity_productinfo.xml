@@ -17,11 +17,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/itemID_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/item_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/c" />
+                <TextView
+                    android:id="@+id/itemID_text"
+                    android:layout_above="@+id/item_image"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+            </RelativeLayout>
 
         </ScrollView>
 
@@ -40,6 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/content"
+                android:background="@android:color/darker_gray"
                 android:orientation="vertical">
                 <RadioGroup
                     android:id="@+id/option_radiogroup"
@@ -67,6 +80,26 @@
 
                 </RadioGroup>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/option_radiogroup"
+                    android:text="옵션"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/item_price"
+                    android:layout_above="@+id/option_radiogroup"
+                    android:layout_alignParentEnd="true"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/item_price"
+                    android:text="가격"
+                    />
                 <Button
                     android:id="@+id/order_btn"
                     android:layout_width="wrap_content"
