@@ -28,8 +28,13 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".activities.ModifySaleProductActivity" />
         <activity android:name=".activities.BaseActivity"></activity>
+        <activity android:name=".activities.FinishOrderActivity" />
+        <activity android:name=".activities.ModifySaleProductActivity" />
+        <activity android:name=".activities.OrderActivity" />
+        <activity android:name=".activities.ProductInfoActivity" />
+        <activity android:name=".activities.SearchResultListActivity" />
+
     </application>
 
 </manifest>

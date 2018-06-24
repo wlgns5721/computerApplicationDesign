@@ -1,3 +1,4 @@
+
 package com.three.cse.computerapplicationdesign.response;
 
 import com.google.gson.annotations.Expose;
@@ -19,7 +20,7 @@ public class OrderInfoResponse {
     private Integer status;
     public List<OrderInfo> getMessage() {
         return message;
-    } // 제품 주문 정보 가져옴
+    }
 
     public Integer getStatus() {
         return status;

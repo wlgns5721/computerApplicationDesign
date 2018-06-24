@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProductInfoActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="211dp"
+        tools:layout_editor_absoluteY="267dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/itemID_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        </ScrollView>
+
+        <SlidingDrawer
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:content="@id/content"
+            android:handle="@id/handle"
+            android:orientation="vertical">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="detail"
+                android:id="@+id/handle"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/content"
+                android:orientation="vertical">
+                <RadioGroup
+                    android:id="@+id/option_radiogroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <RadioButton
+                        android:id="@+id/option1_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="option1" />
+
+                    <RadioButton
+                        android:id="@+id/option2_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="option2" />
+
+                    <RadioButton
+                        android:id="@+id/option3_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="option3" />
+
+                </RadioGroup>
+
+                <Button
+                    android:id="@+id/order_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:text="order" />
+            </RelativeLayout>
+        </SlidingDrawer>
+
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
