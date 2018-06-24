@@ -2,25 +2,39 @@ package com.three.cse.computerapplicationdesign.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
 
 import com.three.cse.computerapplicationdesign.R;
+import com.three.cse.computerapplicationdesign.requests.OrderRequest;
+import com.three.cse.computerapplicationdesign.response.SearchResult;
+import com.three.cse.computerapplicationdesign.response.SuccessResponse;
+import com.three.cse.computerapplicationdesign.utils.APIClient;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class OrderActivity extends BaseActivity {
+    private SearchResult product;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
 
         Intent intent = new Intent(this.getIntent());
-        final int itemContent = intent.getIntExtra("itemID", 0); // item passed
-        final String itemOption = intent.getStringExtra("itemOption"); // item option passed
-        TextView itemContent_text = (TextView) findViewById(R.id.itemContent_text);
+        product = (SearchResult)intent.getSerializableExtra("product");
 
-        itemContent_text.setText("itemID : " + Integer.toString(itemContent) + " itemOption : " + itemOption);
+        TextView itemName_text = (TextView) findViewById(R.id.itemname_text);
+        TextView itemCount_text = (TextView) findViewById(R.id.itemcount_text);
+        TextView itemOption_text = (TextView) findViewById(R.id.itemoption_text);
+        TextView itemPrice_text = (TextView) findViewById(R.id.itemprice_text);
+
+        itemName_text.setText(product.getProductname());
+        itemCount_text.setText(product.getCount());
+        itemOption_text.setText("ASdf");
+        itemPrice_text.setText(product.getPrice());
 
         Button orderFinal_btn = (Button)findViewById(R.id.orderFinal_btn);
 
@@ -28,9 +42,25 @@ public class OrderActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(OrderActivity.this, FinishOrderActivity.class);
-                intent.putExtra("itemID", itemContent);
-                startActivity(intent);
+                APIClient.getInstance().create(OrderRequest.class).orderProduct(product.getProductid(),
+                        product.getProductname(),
+                        product.getCount(),
+                        "temp",
+                        "temp",
+                        "temp")
+                        .enqueue(new Callback<SuccessResponse>() {
+                            @Override
+                            public void onResponse(Call<SuccessResponse> call, Response<SuccessResponse> response) {
+                                Intent finishIntent = new Intent(OrderActivity.this,FinishOrderActivity.class);
+                                finish();
+                                startActivity(finishIntent);
+                            }
+
+                            @Override
+                            public void onFailure(Call<SuccessResponse> call, Throwable t) {
+
+                            }
+                        });
             }
         });
     }

@@ -10,19 +10,20 @@ import android.view.View;
 import android.content.Intent;
 
 import com.three.cse.computerapplicationdesign.R;
+import com.three.cse.computerapplicationdesign.response.SearchResult;
+
+import java.io.Serializable;
 
 
 public class ProductInfoActivity  extends BaseActivity {
+    private SearchResult searchResult;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_productinfo);
 
-        Intent intent = new Intent(this.getIntent());
-        final int itemID = intent.getIntExtra("itemID", 0); // item passed
-        TextView itemText = (TextView)findViewById(R.id.itemID_text);
-
-        itemText.setText(Integer.toString(itemID));
+        Intent intent = getIntent();
+        searchResult = (SearchResult) intent.getSerializableExtra("product");
 
         Button order_btn = (Button)findViewById(R.id.order_btn);
 
@@ -34,8 +35,8 @@ public class ProductInfoActivity  extends BaseActivity {
                 int id = option_radiogroup.getCheckedRadioButtonId();
                 RadioButton option_radio = (RadioButton)findViewById(id);
                 Intent intent = new Intent(ProductInfoActivity.this, OrderActivity.class);
-                intent.putExtra("itemID", itemID); //item passed
-                intent.putExtra("itemOption", String.valueOf(option_radio.getText()));
+                intent.putExtra("product",searchResult);
+                finish();
                 startActivity(intent);
             }
         });

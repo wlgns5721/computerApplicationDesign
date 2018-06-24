@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
 
+import com.three.cse.computerapplicationdesign.MainPageActivity;
 import com.three.cse.computerapplicationdesign.R;
 
 public class FinishOrderActivity extends BaseActivity {
@@ -26,7 +27,8 @@ public class FinishOrderActivity extends BaseActivity {
         toMain_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FinishOrderActivity.this, MainActivity.class);
+                Intent intent = new Intent(FinishOrderActivity.this, MainPageActivity.class);
+                finish();
                 startActivity(intent);
             }
         });
