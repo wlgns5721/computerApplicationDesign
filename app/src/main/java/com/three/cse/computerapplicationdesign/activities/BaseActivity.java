@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.three.cse.computerapplicationdesign.MainPageActivity;
 import com.three.cse.computerapplicationdesign.R;
 
 public class BaseActivity extends AppCompatActivity {
@@ -37,7 +38,7 @@ public class BaseActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch(id) {
             case android.R.id.home:
-                Intent homeIntent = new Intent(this, SaleProductListActivity.class);
+                Intent homeIntent = new Intent(this, MainPageActivity.class);
                 homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(homeIntent);
                 return true;
