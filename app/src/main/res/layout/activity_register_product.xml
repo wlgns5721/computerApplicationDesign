@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="제품정보"
+                    android:textColor="@color/global_color"
+                    android:textSize="18dp" />
+
+                <EditText
+                    android:id="@+id/edt_register_product_name"
+                    style="@style/DefaultEditText"
+                    android:hint="제품명" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="가격"
+                    android:textColor="@color/global_color"
+                    android:textSize="18dp" />
+
+                <EditText
+                    android:id="@+id/edt_register_product_price"
+                    style="@style/DefaultEditText"
+                    android:hint="가격" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="수량"
+                    android:textColor="@color/global_color"
+                    android:textSize="18dp" />
+
+                <EditText
+                    android:id="@+id/edt_register_product_count"
+                    style="@style/DefaultEditText"
+                    android:hint="가격" />
+
+                <TextView
+                    android:id="@+id/tv_detail_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="제품상세설명 이미지"
+                    android:textColor="@color/global_color"
+                    android:textSize="18dp" />
+
+                <Button
+                    android:id="@+id/btn_register_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/global_color"
+                    android:text="이미지 등록"
+                    android:textColor="@color/button_text_color"
+                    android:layout_marginTop="10dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="옵션"
+                    android:textColor="@color/global_color"
+                    android:textSize="18dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <EditText
+                        android:id="@+id/edt_option1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint = "옵션 내용"
+                        android:layout_weight="5" />
+
+                    <EditText
+                        android:id="@+id/edt_option1_price"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="추가 가격"
+                        android:layout_weight="3" />
+                </LinearLayout>
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <EditText
+                        android:id="@+id/edt_option2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint = "옵션 내용"
+                        android:layout_weight="5" />
+
+                    <EditText
+                        android:id="@+id/edt_option2_price"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="추가 가격"
+                        android:layout_weight="3" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <EditText
+                        android:id="@+id/edt_option3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint = "옵션 내용"
+                        android:layout_weight="5" />
+
+                    <EditText
+                        android:id="@+id/edt_option3_price"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:hint="추가 가격"
+                        android:layout_weight="3" />
+                </LinearLayout>
+                <Button
+                    android:id="@+id/btn_register_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/global_color"
+                    android:text="제품 등록"
+                    android:textColor="@color/button_text_color" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</layout>
