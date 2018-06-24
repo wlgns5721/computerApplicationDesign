@@ -1,6 +1,7 @@
 package com.three.cse.computerapplicationdesign.requests;
 
 import com.three.cse.computerapplicationdesign.response.GeneralResponse;
+import com.three.cse.computerapplicationdesign.response.SuccessResponse;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -17,5 +18,5 @@ import retrofit2.http.Path;
 public interface UploadImageRequest {
     @Multipart
     @POST("/upload/{productid}")
-    Call<GeneralResponse> uploadImage(@Part MultipartBody.Part image, @Part("name") RequestBody description, @Path("productid") String productId);
+    Call<SuccessResponse> uploadImage(@Part MultipartBody.Part image, @Path("productid") String productId);
 }
