@@ -19,6 +19,7 @@ import com.three.cse.computerapplicationdesign.databinding.ActivityProductListBi
 import com.three.cse.computerapplicationdesign.requests.LoadSaleProductRequest;
 import com.three.cse.computerapplicationdesign.response.SaleProductResponse;
 import com.three.cse.computerapplicationdesign.utils.APIClient;
+import com.three.cse.computerapplicationdesign.utils.RequestManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,6 +43,10 @@ public class SaleProductListActivity extends BaseActivity {
         recyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
         mBinding.progressbar.setVisibility(View.GONE);
+
+        //test code
+        RequestManager.getInstance().requestOrderInfo(getApplicationContext());
+
 
         mBinding.btnAddProduct.setOnClickListener(new View.OnClickListener() {
             @Override

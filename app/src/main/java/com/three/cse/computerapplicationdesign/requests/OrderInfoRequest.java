@@ -1,6 +1,7 @@
 package com.three.cse.computerapplicationdesign.requests;
 
 import com.three.cse.computerapplicationdesign.response.GeneralResponse;
+import com.three.cse.computerapplicationdesign.response.OrderInfoResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -13,7 +14,6 @@ import retrofit2.http.POST;
  */
 
 public interface OrderInfoRequest {
-    @FormUrlEncoded
-    @GET
-    Call<GeneralResponse> orderInfoProduct();
+    @GET("/orderinfo")
+    Call<OrderInfoResponse> orderInfoProduct();
 }

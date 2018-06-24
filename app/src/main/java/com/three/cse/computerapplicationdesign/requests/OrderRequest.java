@@ -1,6 +1,7 @@
 package com.three.cse.computerapplicationdesign.requests;
 
 import com.three.cse.computerapplicationdesign.response.GeneralResponse;
+import com.three.cse.computerapplicationdesign.response.SuccessResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -13,8 +14,8 @@ import retrofit2.http.POST;
 
 public interface OrderRequest {
     @FormUrlEncoded
-    @POST
-    Call<GeneralResponse> orderProduct(@Field("productid") String productId,
+    @POST("/order")
+    Call<SuccessResponse> orderProduct(@Field("productid") String productId,
                                        @Field("productname") String productName,
                                        @Field("count") String count,
                                        @Field("option1") String option1,

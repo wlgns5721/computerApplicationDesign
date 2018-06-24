@@ -23,7 +23,9 @@ import com.three.cse.computerapplicationdesign.databinding.ActivityRegisterProdu
 import com.three.cse.computerapplicationdesign.requests.RegisterSaleProductRequest;
 import com.three.cse.computerapplicationdesign.requests.UploadImageRequest;
 import com.three.cse.computerapplicationdesign.response.GeneralResponse;
+import com.three.cse.computerapplicationdesign.response.SuccessResponse;
 import com.three.cse.computerapplicationdesign.utils.APIClient;
+import com.three.cse.computerapplicationdesign.utils.RequestManager;
 
 import java.io.File;
 
@@ -46,6 +48,7 @@ public class RegisterSaleProductActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         actionBar.setTitle("제품 정보 등록");
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_register_product);
+
 
         mBinding.btnRegisterImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,17 +79,17 @@ public class RegisterSaleProductActivity extends BaseActivity {
                                         mFilePath = "drawable://" + R.drawable.default_image;
                                     File file = new File(mFilePath);
                                     RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
-                                    MultipartBody.Part body = MultipartBody.Part.createFormData("upload", file.getName(), reqFile);
+                                    MultipartBody.Part body = MultipartBody.Part.createFormData("userfile", file.getName(), reqFile);
                                     RequestBody description = RequestBody.create(MediaType.parse("text/plain"), "upload_test");
-                                    APIClient.getInstance().create(UploadImageRequest.class).uploadImage(body, description, "1")
-                                            .enqueue(new Callback<GeneralResponse>() {
+                                    APIClient.getInstance().create(UploadImageRequest.class).uploadImage(body, "3")
+                                            .enqueue(new Callback<SuccessResponse>() {
                                                 @Override
-                                                public void onResponse(Call<GeneralResponse> call, Response<GeneralResponse> response) {
+                                                public void onResponse(Call<SuccessResponse> call, Response<SuccessResponse> response) {
                                                     Toast.makeText(getApplicationContext(), "success", Toast.LENGTH_LONG).show();
                                                 }
 
                                                 @Override
-                                                public void onFailure(Call<GeneralResponse> call, Throwable t) {
+                                                public void onFailure(Call<SuccessResponse> call, Throwable t) {
                                                     Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_LONG).show();
                                                 }
                                             });
