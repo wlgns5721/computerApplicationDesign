@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
 
+import com.three.cse.computerapplicationdesign.R;
+
 public class FinishOrderActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
