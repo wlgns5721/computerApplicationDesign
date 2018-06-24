@@ -1,11 +1,14 @@
 package com.three.cse.computerapplicationdesign.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
+import com.three.cse.computerapplicationdesign.activities.ProductInfoActivity;
 import com.three.cse.computerapplicationdesign.databinding.ListItemSearchResultBinding;
 import com.three.cse.computerapplicationdesign.holders.SearchViewHolder;
 import com.three.cse.computerapplicationdesign.response.OrderInfo;
@@ -19,7 +22,7 @@ import java.util.ArrayList;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> {
     private Context mContext;
-    private ArrayList<SearchResult> searchResultList;
+    private ArrayList<SearchResult> searchResultList = new ArrayList<SearchResult>();
     @NonNull
     @Override
     public SearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -31,9 +34,17 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SearchViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SearchViewHolder holder, final int position) {
         holder.getBinding().tvSearchProductName.setText(searchResultList.get(position).getProductname());
-        holder.getBinding().tvSearchPrice.setText(searchResultList.get(position).getPrice());
+        holder.getBinding().tvSearchPrice.setText(searchResultList.get(position).getPrice()+"원");
+        holder.getBinding().linearSearchResult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ProductInfoActivity.class);
+                intent.putExtra("product",searchResultList.get(position));
+                mContext.startActivity(intent);
+            }
+        });
 
     }
 

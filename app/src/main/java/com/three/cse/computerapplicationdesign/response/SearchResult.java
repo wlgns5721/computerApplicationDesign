@@ -3,23 +3,25 @@ package com.three.cse.computerapplicationdesign.response;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+import java.util.List;
+
 /**
  * Created by Ji Hoon on 2018-06-24.
  */
 
-public class SearchResult {
-    @SerializedName("productid")
-    @Expose
+public class SearchResult implements Serializable{
     private String productid;
-    @SerializedName("productname")
-    @Expose
     private String productname;
-    @SerializedName("price")
-    @Expose
     private String price;
-    @SerializedName("count")
-    @Expose
     private String count;
+
+    public SearchResult(List<String> response) {
+        productid = response.get(1);
+        productname = response.get(3);
+        price = response.get(5);
+        count=response.get(7);
+    }
 
     public String getProductid() {
         return productid;

@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.three.cse.computerapplicationdesign.activities.SearchResultActivity;
 
@@ -24,10 +25,12 @@ public class MainPageActivity extends AppCompatActivity
         setContentView(R.layout.activity_main_page);
 
         Button searchButton = (Button)findViewById(R.id.main_page_search_button);
+        final EditText edtSearchKeyword = (EditText)findViewById(R.id.main_page_keyword);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent searchResultIntent = new Intent(MainPageActivity.this, SearchResultActivity.class);
+                searchResultIntent.putExtra("searchString",edtSearchKeyword.getText().toString());
                 startActivity(searchResultIntent);
             }
         });

@@ -32,6 +32,7 @@ public class ModifySaleProductActivity extends BaseActivity {
         mBinding = DataBindingUtil.setContentView(this,R.layout.activity_register_product);
         mBinding.btnRegisterProduct.setVisibility(View.GONE);
         mBinding.tvDetailImage.setVisibility(View.GONE);
+        mBinding.btnDeleteProduct.setVisibility(View.VISIBLE);
         mBinding.edtRegisterProductName.setText(product.getProductname());
         mBinding.edtRegisterProductPrice.setText(product.getPrice());
         mBinding.edtRegisterProductCount.setText(product.getCount());

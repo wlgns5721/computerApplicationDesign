@@ -12,16 +12,16 @@ import java.util.List;
 public class SearchResponse {
     @SerializedName("message")
     @Expose
-    private List<SearchResult> message = null;
+    private List<List<String>> message = null;
     @SerializedName("status")
     @Expose
     private Integer status;
 
-    public List<SearchResult> getSearchResult() {
+    public List<List<String>> getMessage() {
         return message;
     }
 
-    public void setSearchResult(List<SearchResult> message) {
+    public void setMessage(List<List<String>> message) {
         this.message = message;
     }
 
@@ -32,4 +32,5 @@ public class SearchResponse {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
 }
