@@ -1,3 +1,4 @@
+
 package com.three.cse.computerapplicationdesign.utils;
 
 import android.content.Context;
@@ -31,6 +32,9 @@ public class RequestManager {
                     @Override
                     public void onResponse(Call<OrderInfoResponse> call, Response<OrderInfoResponse> response) {
                         //여기에 처리할 부분을 넣어주세요
+                        if (response.isSuccessful()) {
+
+                        }
                     }
 
                     @Override

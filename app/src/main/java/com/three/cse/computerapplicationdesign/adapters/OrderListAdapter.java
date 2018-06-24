@@ -34,4 +34,14 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListViewHolder> 
     public int getItemCount() {
         return orderList.size();
     }
+
+    public void clearOrderList() {
+        orderList.clear();
+    }
+
+    public void getOrderList(OrderInfo info) {
+        orderList.add(info);
+    }
+
 }
+
