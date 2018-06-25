@@ -104,17 +104,22 @@ public class SearchResultActivity extends BaseActivity {
                             Toast.makeText(getApplicationContext(),"검색 결과가 없습니다.",Toast.LENGTH_LONG).show();
                         final int[] count = {0};
                         for(int i=0; i<size; i++) {
-                            final int index = i;
                             final SearchResult searchResult = new SearchResult(searchResultList.get(i));
-                            APIClient.getInstance().create(DownloadImageRequest.class).downloadImageRequest(searchResult.getProductid())
+                            mAdapter.addSearchInfo(searchResult);
+                            mAdapter.addImage();
+                            final String pid = searchResult.getProductid();
+                            APIClient.getInstance().create(DownloadImageRequest.class).downloadImageRequest(pid)
                                     .enqueue(new Callback<ResponseBody>() {
                                         @Override
                                         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                                             try {
                                                 byte[] bytes = response.body().bytes();
                                                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-                                                mAdapter.addImage(bitmap);
-                                                mAdapter.addSearchInfo(searchResult);
+                                                for(int s=0; s<size; s++) {
+                                                    if(pid.equals(mAdapter.getSearchInfo(s).getProductid())) {
+                                                        mAdapter.setImage(s,bitmap);
+                                                    }
+                                                }
 
                                                 count[0]++;
                                                 if(count[0]==size) {

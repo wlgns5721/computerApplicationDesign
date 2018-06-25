@@ -3,6 +3,7 @@ package com.three.cse.computerapplicationdesign.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -84,7 +85,16 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> {
     public void clearSearchInfo() {
         searchResultList.clear();
     }
-    public void addImage(Bitmap bitmap) {
+    public SearchResult getSearchInfo(int index) {return searchResultList.get(index);}
+    public void clearImage() {
+        imageList.clear();
+    }
+    public void addImage() {
+        byte[] bytes = new byte[]{0x10};
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,0);
         imageList.add(bitmap);
+    }
+    public void setImage(int index, Bitmap bitmap) {
+        imageList.set(index,bitmap);
     }
 }
