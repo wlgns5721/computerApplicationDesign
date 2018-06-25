@@ -14,6 +14,7 @@ import retrofit2.http.POST;
  */
 
 public interface OrderInfoRequest {
-    @GET("/orderinfo")
-    Call<OrderInfoResponse> orderInfoProduct();
+    @FormUrlEncoded
+    @POST("/orderinfobydate")
+    Call<OrderInfoResponse> orderInfoProduct(@Field("startdate") String start, @Field("enddate") String end);
 }

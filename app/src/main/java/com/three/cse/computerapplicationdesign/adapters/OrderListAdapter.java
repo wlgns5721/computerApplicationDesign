@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class OrderListAdapter extends RecyclerView.Adapter<OrderListViewHolder> {
 
-    private ArrayList<OrderInfo> orderList;
+    private ArrayList<OrderInfo> orderList = new ArrayList<OrderInfo>();
 
     @NonNull
     @Override
@@ -27,8 +27,8 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull OrderListViewHolder holder, int position) {
         holder.getProductName().setText(orderList.get(position).getProductname());
-        holder.getProductPrice().setText(orderList.get(position).getPrice());
-        holder.getProductQuantity().setText(orderList.get(position).getCount());
+        holder.getProductPrice().setText("가격 : "+orderList.get(position).getPrice()+"원");
+        holder.getProductQuantity().setText("주문수량 : "+orderList.get(position).getCount()+"개");
     }
 
     public int getItemCount() {

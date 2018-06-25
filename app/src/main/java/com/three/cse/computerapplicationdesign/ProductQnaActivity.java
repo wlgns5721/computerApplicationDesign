@@ -8,7 +8,9 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class ProductQnaActivity extends AppCompatActivity {
+import com.three.cse.computerapplicationdesign.activities.BaseActivity;
+
+public class ProductQnaActivity extends BaseActivity {
 
     private WebView productQnaWebView;
 

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.app.DatePickerDialog;
 
+import com.three.cse.computerapplicationdesign.activities.BaseActivity;
 import com.three.cse.computerapplicationdesign.adapters.OrderListAdapter;
 import com.three.cse.computerapplicationdesign.requests.OrderInfoRequest;
 import com.three.cse.computerapplicationdesign.response.OrderInfoResponse;
@@ -29,7 +30,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class OrderListActivity extends AppCompatActivity {
+public class OrderListActivity extends BaseActivity {
 
     private OrderListAdapter mAdapter;
 
@@ -84,6 +85,7 @@ public class OrderListActivity extends AppCompatActivity {
 
         orderListRecyclerView.setHasFixedSize(true);
         orderListRecyclerView.setLayoutManager(layoutManager);
+        mAdapter = new OrderListAdapter();
         orderListRecyclerView.setAdapter(mAdapter);
 
         orderListResultButton = (Button) findViewById(R.id.order_list_result);

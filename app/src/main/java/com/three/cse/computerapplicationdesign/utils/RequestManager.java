@@ -26,24 +26,6 @@ public class RequestManager {
         return instance;
     }
 
-    public void requestOrderInfo() {
-        APIClient.getInstance().create(OrderInfoRequest.class).orderInfoProduct()
-                .enqueue(new Callback<OrderInfoResponse>() {
-                    @Override
-                    public void onResponse(Call<OrderInfoResponse> call, Response<OrderInfoResponse> response) {
-                        //여기에 처리할 부분을 넣어주세요
-                        if (response.isSuccessful()) {
-
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<OrderInfoResponse> call, Throwable t) {
-                        //실패했을 때의 부분
-                    }
-                });
-    }
-
     public void requestOrder(String productId, String productName, String productCount, String option1, String option2, String option3) {
         APIClient.getInstance().create(OrderRequest.class).orderProduct(productId, productName, productCount, option1, option2, option3)
                 .enqueue(new Callback<SuccessResponse>() {
