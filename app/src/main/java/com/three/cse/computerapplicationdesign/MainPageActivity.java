@@ -2,6 +2,8 @@ package com.three.cse.computerapplicationdesign;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,10 +17,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.three.cse.computerapplicationdesign.activities.SearchResultActivity;
+import com.three.cse.computerapplicationdesign.adapters.MainPageItemListAdapter;
 
 public class MainPageActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    private MainPageItemListAdapter mAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +37,13 @@ public class MainPageActivity extends AppCompatActivity
                 startActivity(searchResultIntent);
             }
         });
+
+        mAdapter = new MainPageItemListAdapter();
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.iv_main_page_item_image);
+        GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),2);
+
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(mAdapter);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

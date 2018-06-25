@@ -34,6 +34,14 @@
         app:layout_constraintStart_toEndOf="@+id/main_page_keyword"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/lv_search_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </android.support.v7.widget.RecyclerView>
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
