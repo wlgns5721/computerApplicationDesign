@@ -56,6 +56,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> {
                             public void onResponse(Call<DetailInfoResponse> call, Response<DetailInfoResponse> response) {
                                 Intent intent = new Intent(mContext, ProductInfoActivity.class);
                                 intent.putExtra("product",response.body().getDetailInfo().get(0));
+//                                intent.putExtra("image",imageList.get(position));
                                 mContext.startActivity(intent);
                             }
 

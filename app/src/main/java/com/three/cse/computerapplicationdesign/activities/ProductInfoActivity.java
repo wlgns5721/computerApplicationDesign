@@ -1,8 +1,10 @@
 package com.three.cse.computerapplicationdesign.activities;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -17,25 +19,27 @@ import com.three.cse.computerapplicationdesign.response.DetailInfo;
 public class ProductInfoActivity  extends BaseActivity {
     private DetailInfo detailInfo;
     private int itemCount;
+    private RadioGroup option_radiogroup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_productinfo);
-
         Intent intent = getIntent();
         detailInfo = (DetailInfo) intent.getSerializableExtra("product");
+//        Bitmap image = intent.getParcelableExtra("image");
 
         itemCount = 1;
 
         Button order_btn = (Button)findViewById(R.id.order_btn);
         Button minus_btn = (Button)findViewById(R.id.minus_btn);
         Button plus_btn = (Button)findViewById(R.id.plus_btn);
+        ImageView imageView = (ImageView)findViewById(R.id.item_image);
 
         final TextView itemDetail_text = (TextView)findViewById(R.id.itemdetail_text);
         final TextView itemCount_text = (TextView)findViewById(R.id.itemcount_text);
         final TextView itemPrice_text = (TextView)findViewById(R.id.itemprice_text);
 
-        final RadioGroup option_radiogroup = (RadioGroup)findViewById(R.id.option_radiogroup);
+        option_radiogroup = (RadioGroup)findViewById(R.id.option_radiogroup);
 
 
         final RadioButton option1_radio = (RadioButton)findViewById(R.id.option1_radio);
@@ -45,7 +49,7 @@ public class ProductInfoActivity  extends BaseActivity {
         option1_radio.setText(detailInfo.getOption1());
         option2_radio.setText(detailInfo.getOption2());
         option3_radio.setText(detailInfo.getOption3());
-
+//        imageView.setImageBitmap(image);
         minus_btn.setOnTouchListener(new View.OnTouchListener(){
             @Override
             public boolean onTouch(View v, MotionEvent event)
@@ -91,6 +95,21 @@ public class ProductInfoActivity  extends BaseActivity {
                 int id = option_radiogroup.getCheckedRadioButtonId();
                 RadioButton option_radio = (RadioButton)findViewById(id);
                 Intent intent = new Intent(ProductInfoActivity.this, OrderActivity.class);
+                detailInfo.setCount(String.valueOf(itemCount));
+                switch(option_radiogroup.getCheckedRadioButtonId()) {
+                    case R.id.option1_radio:
+                        detailInfo.setOption2("");
+                        detailInfo.setOption3("");
+                        break;
+                    case R.id.option2_radio:
+                        detailInfo.setOption1("");
+                        detailInfo.setOption3("");
+                        break;
+                    case R.id.option3_radio:
+                        detailInfo.setOption1("");
+                        detailInfo.setOption2("");
+                        break;
+                }
                 intent.putExtra("product", detailInfo);
                 finish();
                 startActivity(intent);

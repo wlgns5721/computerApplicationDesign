@@ -93,6 +93,10 @@ public class SearchResultActivity extends BaseActivity {
                 .enqueue(new Callback<SearchResponse>() {
                     @Override
                     public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
+                        if(!response.isSuccessful()) {
+                            Toast.makeText(getApplicationContext(), "서버에 연결할 수 없습니다.", Toast.LENGTH_LONG).show();
+                            return;
+                        }
                         List<List<String>> searchResultList = response.body().getMessage();
                         final int size = searchResultList.size();
                         if(size==0)

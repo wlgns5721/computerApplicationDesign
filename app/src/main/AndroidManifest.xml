@@ -30,6 +30,9 @@
         <activity android:name=".activities.OrderActivity" />
         <activity android:name=".activities.ProductInfoActivity" />
         <activity android:name=".activities.SearchResultActivity" />
+        <activity android:name=".OrderListActivity"/>
+        <activity android:name=".ProductQnaActivity"/>
+
         <activity android:name=".MainPageActivity"
             android:label="@string/title_activity_main_page"
             android:theme="@style/AppTheme.NoActionBar">>

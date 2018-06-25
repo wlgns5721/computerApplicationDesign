@@ -110,8 +110,11 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="order"
+            android:text="주문하기"
             android:layout_gravity="bottom"
-            android:id="@+id/orderFinal_btn"/>
+            android:id="@+id/orderFinal_btn"
+            android:textSize="20dp"
+            android:background="@color/global_color"
+            android:textColor="@color/button_text_color"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
