@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.three.cse.computerapplicationdesign.activities.BaseActivity;
+
 public class LoginActivity extends AppCompatActivity {
 
     @Override
@@ -20,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent customerLoginIntent = new Intent(LoginActivity.this, MainPageActivity.class);
+                BaseActivity.isSeller=false;
                 startActivity(customerLoginIntent);
             }
         });
@@ -28,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent sellerLoginIntent = new Intent(LoginActivity.this, SellerMainPageActivity.class);
+                BaseActivity.isSeller=true;
                 startActivity(sellerLoginIntent);
             }
         });

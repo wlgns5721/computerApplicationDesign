@@ -11,9 +11,11 @@ import android.view.MenuItem;
 
 import com.three.cse.computerapplicationdesign.MainPageActivity;
 import com.three.cse.computerapplicationdesign.R;
+import com.three.cse.computerapplicationdesign.SellerMainPageActivity;
 import com.three.cse.computerapplicationdesign.response.SaleProduct;
 
 public class BaseActivity extends AppCompatActivity {
+    public static boolean isSeller = false;
     protected android.support.v7.app.ActionBar actionBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,11 @@ public class BaseActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch(id) {
             case android.R.id.home:
-                Intent homeIntent = new Intent(this, SaleProductListActivity.class);
+                Intent homeIntent;
+                if(isSeller==true)
+                    homeIntent = new Intent(this, SellerMainPageActivity.class);
+                else
+                    homeIntent = new Intent(this, MainPageActivity.class);
                 homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(homeIntent);
                 return true;

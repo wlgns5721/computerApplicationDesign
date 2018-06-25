@@ -17,4 +17,12 @@ public interface SearchRequest {
     @POST("/searchbyname")
     Call<SearchResponse> searchProduct(@Field("name") String name);
 
+    @FormUrlEncoded
+    @POST("/searchbyrecent")
+    Call<SearchResponse> searchProductByRecent(@Field("name") String name);
+
+    @FormUrlEncoded
+    @POST("/searchbytotalorder")
+    Call<SearchResponse> searchProductByOrder(@Field("name") String name);
+
 }
