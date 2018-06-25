@@ -1,5 +1,7 @@
 package com.three.cse.computerapplicationdesign;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.preference.EditTextPreference;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,11 +37,15 @@ public class OrderListActivity extends AppCompatActivity {
     Button searchEndDate;
     Button orderListResultButton;
 
+    String startData;
+    String endData;
+
     int startYear, startMonth, startDate, lastYear, lastMonth, lastDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("주문 내역 조회");
         setContentView(R.layout.activity_order_list);
 
         searchStartDate = (Button) findViewById(R.id.search_start_date);
@@ -69,6 +75,7 @@ public class OrderListActivity extends AppCompatActivity {
             public void onClick(View view) {
                 new DatePickerDialog(OrderListActivity.this, dateSetListener2, lastYear, lastMonth, lastDate).show();
                 updateEndDate(lastYear, lastMonth, lastDate);
+                endData = lastYear + "-" + (lastMonth+1) + "-" + lastDate;
             }
         });
 
@@ -83,7 +90,7 @@ public class OrderListActivity extends AppCompatActivity {
         orderListResultButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                requestOrderInfo();
+                requestOrderInfo(startData, endData);
             }
         });
     }
@@ -109,18 +116,18 @@ public class OrderListActivity extends AppCompatActivity {
     };
 
     private void updateStartDate(int year, int month, int date) {
-        String str = year + "/" + (month) + "/" + date;
-        searchStartDate.setText(str);
+        startData = year + "-" + (month) + "-" + date;
+        searchStartDate.setText(startData);
     }
 
     private void updateEndDate(int year, int month, int date) {
-        String str = year + "/" + (month) + "/" + date;
-        searchEndDate.setText(str);
+        endData = year + "-" + (month) + "-" + date;
+        searchEndDate.setText(endData);
     }
 
 
-    public void requestOrderInfo() {
-        APIClient.getInstance().create(OrderInfoRequest.class).orderInfoProduct()
+    public void requestOrderInfo(String startData, String endData) {
+        APIClient.getInstance().create(OrderInfoRequest.class).orderInfoProduct(startData, endData)
                 .enqueue(new Callback<OrderInfoResponse>() {
                     @Override
                     public void onResponse(Call<OrderInfoResponse> call, Response<OrderInfoResponse> response) {
@@ -139,6 +146,7 @@ public class OrderListActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<OrderInfoResponse> call, Throwable t) {
                         //실패했을 때의 부분
+                        Toast.makeText(getApplicationContext(), "서버에 연결할 수 없습니다.", Toast.LENGTH_LONG).show();
                     }
                 });
     }
