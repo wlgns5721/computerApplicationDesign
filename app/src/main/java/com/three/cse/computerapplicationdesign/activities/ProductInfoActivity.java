@@ -6,6 +6,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.view.View;
 import android.content.Intent;
+import android.widget.TextView;
 
 import com.three.cse.computerapplicationdesign.R;
 import com.three.cse.computerapplicationdesign.response.DetailInfo;
@@ -25,8 +26,8 @@ public class ProductInfoActivity  extends BaseActivity {
         TextView itemDetail_text = (TextView)findViewById(R.id.itemdetail_text);
         final RadioGroup option_radiogroup = (RadioGroup)findViewById(R.id.option_radiogroup);
 
-        itemDetail_text.setText("제품명 : " + searchResult.getProductname() +
-                "가격 : " + searchResult.getPrice()
+        itemDetail_text.setText("제품명 : " + detailInfo.getProductname() +
+                "가격 : " + detailInfo.getPrice()
         );
 
         order_btn.setOnClickListener(new View.OnClickListener() {
