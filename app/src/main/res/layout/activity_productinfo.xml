@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductInfoActivity">
+    tools:context=".activities.ProductInfoActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,8 +27,8 @@
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/c" />
                 <TextView
-                    android:id="@+id/itemID_text"
-                    android:layout_above="@+id/item_image"
+                    android:id="@+id/itemdetail_text"
+                    android:layout_below="@+id/item_image"
                     android:layout_centerHorizontal="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -48,12 +48,21 @@
                 android:layout_height="wrap_content"
                 android:text="detail"
                 android:id="@+id/handle"/>
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/content"
                 android:background="@android:color/darker_gray"
                 android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="옵션"
+                    android:textColor="@color/global_color"
+                    android:textSize="18dp"
+                    />
+
+
                 <RadioGroup
                     android:id="@+id/option_radiogroup"
                     android:layout_width="wrap_content"
@@ -80,34 +89,27 @@
 
                 </RadioGroup>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/option_radiogroup"
-                    android:text="옵션"
-                    />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/item_price"
-                    android:layout_above="@+id/option_radiogroup"
-                    android:layout_alignParentEnd="true"
+                    android:text="가격"
+                    android:textColor="@color/global_color"
+                    android:textSize="18dp"
                     />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/item_price"
-                    android:text="가격"
+                    android:textSize="18dp"
+                    android:id="@+id/itemprice_text"
                     />
                 <Button
                     android:id="@+id/order_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="end"
                     android:text="order" />
-            </RelativeLayout>
+            </LinearLayout>
         </SlidingDrawer>
 
 

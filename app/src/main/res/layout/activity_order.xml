@@ -72,6 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="order"
+            android:layout_gravity="bottom"
             android:id="@+id/orderFinal_btn"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

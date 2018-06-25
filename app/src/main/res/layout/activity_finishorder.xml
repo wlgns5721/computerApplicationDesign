@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FinshOrderActivity">
+    tools:context=".activities.FinshOrderActivity">
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -12,9 +12,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:layout_above="@+id/successmessage_text"
-        android:id="@+id/productname_text"
+        android:id="@+id/product_text"
         />
     <TextView
         android:id="@+id/successmessage_text"
@@ -23,7 +23,8 @@
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/toMain_btn"
         android:layout_marginBottom="15dp"
-        android:textSize="20dp"
+        android:textColor="@color/global_color"
+        android:textSize="18dp"
         android:text="order success!"/>
 
     <Button
