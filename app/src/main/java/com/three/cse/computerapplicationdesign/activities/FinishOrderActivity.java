@@ -30,7 +30,7 @@ public class FinishOrderActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FinishOrderActivity.this, MainPageActivity.class);
-                finish();
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });
