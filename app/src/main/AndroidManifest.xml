@@ -26,10 +26,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".activities.ModifySaleProductActivity" />
-        <activity android:name=".activities.BaseActivity"></activity>
+        <activity android:name=".activities.BaseActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity
+            android:name=".SellerMainPageActivity"
+            android:label="@string/title_activity_seller_main_page"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

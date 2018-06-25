@@ -1,11 +1,13 @@
 package com.three.cse.computerapplicationdesign;
 
+import android.preference.EditTextPreference;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,8 +25,9 @@ import retrofit2.Response;
 public class OrderListActivity extends AppCompatActivity {
 
     private OrderListAdapter mAdapter;
-    
 
+    EditText searchStartDate;
+    EditText searchEndDate;
     Button orderListResultButton;
 
     @Override
@@ -32,11 +35,14 @@ public class OrderListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_list);
 
+        searchStartDate = (EditText) findViewById(R.id.search_start_date);
+        searchEndDate = (EditText) findViewById(R.id.search_end_date);
+
         RecyclerView orderListRecyclerView = (RecyclerView) findViewById(R.id.order_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
 
         orderListRecyclerView.setHasFixedSize(true);
-        orderListRecyclerView.setLayoutManager(layoutManager);
+        orderListRecyclerView.setLayoutManager(layoutManager); 
         orderListRecyclerView.setAdapter(mAdapter);
 
         orderListResultButton = (Button) findViewById(R.id.order_list_result);
