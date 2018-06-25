@@ -53,6 +53,7 @@ public class OrderActivity extends BaseActivity {
                             @Override
                             public void onResponse(Call<SuccessResponse> call, Response<SuccessResponse> response) {
                                 Intent finishIntent = new Intent(OrderActivity.this,FinishOrderActivity.class);
+                                finishIntent.putExtra("product",product);
                                 finish();
                                 startActivity(finishIntent);
                             }

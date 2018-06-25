@@ -9,19 +9,21 @@ import android.widget.Button;
 
 import com.three.cse.computerapplicationdesign.MainPageActivity;
 import com.three.cse.computerapplicationdesign.R;
+import com.three.cse.computerapplicationdesign.response.SearchResult;
 
 public class FinishOrderActivity extends BaseActivity {
+    private SearchResult searchResult;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finishorder);
 
-        Intent intent = new Intent(this.getIntent());
-        final int itemID = intent.getIntExtra("itemID", 0); // item passed
+        Intent intent = getIntent();
+        searchResult = (SearchResult) intent.getSerializableExtra("product");
 
-        TextView productname_text = (TextView)findViewById(R.id.productname_text);
+        TextView product_text = (TextView)findViewById(R.id.product_text);
 
-        productname_text.setText(Integer.toString(itemID));
+        product_text.setText(searchResult.getCount() + " " + searchResult.getProductname() + "(s)");
 
         Button toMain_btn = (Button)findViewById(R.id.toMain_btn);
         toMain_btn.setOnClickListener(new View.OnClickListener() {

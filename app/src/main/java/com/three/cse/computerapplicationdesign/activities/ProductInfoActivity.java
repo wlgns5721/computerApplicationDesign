@@ -22,8 +22,12 @@ public class ProductInfoActivity  extends BaseActivity {
         detailInfo = (DetailInfo) intent.getSerializableExtra("product");
 
         Button order_btn = (Button)findViewById(R.id.order_btn);
-
+        TextView itemDetail_text = (TextView)findViewById(R.id.itemdetail_text);
         final RadioGroup option_radiogroup = (RadioGroup)findViewById(R.id.option_radiogroup);
+
+        itemDetail_text.setText("제품명 : " + searchResult.getProductname() +
+                "가격 : " + searchResult.getPrice()
+        );
 
         order_btn.setOnClickListener(new View.OnClickListener() {
             @Override
