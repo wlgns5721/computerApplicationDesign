@@ -22,8 +22,8 @@
                 android:layout_height="match_parent">
                 <ImageView
                     android:id="@+id/item_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="250dp"
+                    android:layout_height="400dp"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/c" />
                 <TextView
@@ -66,38 +66,29 @@
                     android:textSize="18dp"
                     />
 
-
-                <RadioGroup
-                    android:id="@+id/option_radiogroup"
+                <CheckBox
+                    android:id="@+id/option1_radio"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                    android:text="option1"
+                    android:textColor="@color/global_color"
+                    android:textSize="18dp"/>
 
-                    <RadioButton
-                        android:id="@+id/option1_radio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:text="option1"
-                        android:textColor="@color/global_color"
-                        android:textSize="18dp"/>
+                <CheckBox
+                    android:id="@+id/option2_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="option2"
+                    android:textColor="@color/global_color"
+                    android:textSize="18dp"/>
 
-                    <RadioButton
-                        android:id="@+id/option2_radio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="option2"
-                        android:textColor="@color/global_color"
-                        android:textSize="18dp"/>
-
-                    <RadioButton
-                        android:id="@+id/option3_radio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="option3"
-                        android:textColor="@color/global_color"
-                        android:textSize="18dp"/>
-
-                </RadioGroup>
+                <CheckBox
+                    android:id="@+id/option3_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="option3"
+                    android:textColor="@color/global_color"
+                    android:textSize="18dp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -114,7 +105,7 @@
                         android:text="1"
                         android:background="@color/button_text_color"
                         android:textSize="18dp"
-                        android:id="@+id/itemcount_text"
+                        android:id="@+id/tv_productinfo_count"
                         />
                     <Button
                         android:id="@+id/plus_btn"
@@ -135,7 +126,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="18dp"
-                    android:id="@+id/itemprice_text"
+                    android:id="@+id/tv_productinfo_price"
                     />
                 <Button
                     android:id="@+id/order_btn"

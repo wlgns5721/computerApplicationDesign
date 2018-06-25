@@ -15,14 +15,15 @@ public class FinishOrderActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        actionBar.setTitle("주문 결과");
         setContentView(R.layout.activity_finishorder);
 
         Intent intent = getIntent();
         orderInfo = (DetailInfo) intent.getSerializableExtra("product");
 
         TextView tvProductName = (TextView)findViewById(R.id.tv_order_result_name);
-        TextView tvProductCount = (TextView)findViewById(R.id.tv_order_result_name);
-        TextView tvProductTotalPrice = (TextView)findViewById(R.id.tv_order_result_name);
+        TextView tvProductCount = (TextView)findViewById(R.id.tv_order_result_count);
+        TextView tvProductTotalPrice = (TextView)findViewById(R.id.tv_order_result_price);
         TextView tvSuccess = (TextView)findViewById(R.id.successmessage_text);
 
         Integer totalPrice = Integer.parseInt(orderInfo.getCount())*Integer.parseInt(orderInfo.getPrice());

@@ -47,6 +47,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> {
         holder.getBinding().tvSearchProductName.setText(searchResultList.get(position).getProductname());
         holder.getBinding().tvSearchPrice.setText(searchResultList.get(position).getPrice()+"원");
         holder.getBinding().ivSearchImage.setImageBitmap(imageList.get(position));
+        final Bitmap bitmap = imageList.get(position);
         holder.getBinding().linearSearchResult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,7 +57,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchViewHolder> {
                             public void onResponse(Call<DetailInfoResponse> call, Response<DetailInfoResponse> response) {
                                 Intent intent = new Intent(mContext, ProductInfoActivity.class);
                                 intent.putExtra("product",response.body().getDetailInfo().get(0));
-//                                intent.putExtra("image",imageList.get(position));
+
+                                intent.putExtra("image",(Bitmap)bitmap);
                                 mContext.startActivity(intent);
                             }
 

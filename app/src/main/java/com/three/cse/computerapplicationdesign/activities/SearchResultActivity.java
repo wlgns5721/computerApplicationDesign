@@ -34,6 +34,7 @@ public class SearchResultActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        actionBar.setTitle("검색 결과");
         setContentView(R.layout.activity_search_result);
         progressBar = (ProgressBar)findViewById(R.id.progressbar);
         progressBar.setVisibility(View.GONE);
