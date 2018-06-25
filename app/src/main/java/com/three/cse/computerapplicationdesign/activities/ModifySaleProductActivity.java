@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.three.cse.computerapplicationdesign.R;
 import com.three.cse.computerapplicationdesign.databinding.ActivityRegisterProductBinding;
+import com.three.cse.computerapplicationdesign.requests.DeleteProductRequest;
 import com.three.cse.computerapplicationdesign.requests.ModifySaleProductRequest;
 import com.three.cse.computerapplicationdesign.response.GeneralResponse;
 import com.three.cse.computerapplicationdesign.response.SaleProduct;
@@ -30,8 +31,8 @@ public class ModifySaleProductActivity extends BaseActivity {
 
         SaleProduct product = (SaleProduct) intent.getSerializableExtra("product");
         mBinding = DataBindingUtil.setContentView(this,R.layout.activity_register_product);
-        mBinding.btnRegisterProduct.setVisibility(View.GONE);
         mBinding.tvDetailImage.setVisibility(View.GONE);
+        mBinding.btnDeleteProduct.setVisibility(View.VISIBLE);
         mBinding.edtRegisterProductName.setText(product.getProductname());
         mBinding.edtRegisterProductPrice.setText(product.getPrice());
         mBinding.edtRegisterProductCount.setText(product.getCount());
@@ -41,6 +42,7 @@ public class ModifySaleProductActivity extends BaseActivity {
         mBinding.edtOption2Price.setText(product.getOption2price());
         mBinding.edtOption3.setText(product.getOption3());
         mBinding.edtOption3Price.setText(product.getOption3price());
+        mBinding.btnRegisterProduct.setText("제품 수정");
         final String productId = product.getProductid();
         mBinding.btnRegisterProduct.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +61,7 @@ public class ModifySaleProductActivity extends BaseActivity {
                             @Override
                             public void onResponse(Call<GeneralResponse> call, Response<GeneralResponse> response) {
                                 if(response.isSuccessful()) {
-                                    Toast.makeText(getApplicationContext(), "성공적으로 등록되었습니다.", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(), "성공적으로 수정되었습니다.", Toast.LENGTH_LONG).show();
                                     finish();
                                     Intent intent = new Intent(ModifySaleProductActivity.this, SaleProductListActivity.class);
                                     startActivity(intent);
@@ -71,6 +73,30 @@ public class ModifySaleProductActivity extends BaseActivity {
                             @Override
                             public void onFailure(Call<GeneralResponse> call, Throwable t) {
                                 Toast.makeText(getApplicationContext(),"fail.",Toast.LENGTH_LONG).show();
+                            }
+                        });
+            }
+        });
+        mBinding.btnDeleteProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                APIClient.getInstance().create(DeleteProductRequest.class).deleteProduct(productId)
+                        .enqueue(new Callback<GeneralResponse>() {
+                            @Override
+                            public void onResponse(Call<GeneralResponse> call, Response<GeneralResponse> response) {
+                                if(response.isSuccessful()) {
+                                    Toast.makeText(getApplicationContext(), "성공적으로 삭제되었습니다.", Toast.LENGTH_LONG).show();
+                                    finish();
+                                    Intent intent = new Intent(ModifySaleProductActivity.this, SaleProductListActivity.class);
+                                    startActivity(intent);
+                                }
+                                else
+                                    Toast.makeText(getApplicationContext(),"서버에 연결할 수 없습니다.",Toast.LENGTH_LONG).show();
+                            }
+
+                            @Override
+                            public void onFailure(Call<GeneralResponse> call, Throwable t) {
+
                             }
                         });
             }

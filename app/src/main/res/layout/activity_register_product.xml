@@ -143,7 +143,15 @@
                     android:background="@color/global_color"
                     android:text="제품 등록"
                     android:textColor="@color/button_text_color" />
-
+                <Button
+                    android:id="@+id/btn_delete_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/global_color"
+                    android:visibility="gone"
+                    android:text="제품 삭제"
+                    android:textColor="@color/button_text_color"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

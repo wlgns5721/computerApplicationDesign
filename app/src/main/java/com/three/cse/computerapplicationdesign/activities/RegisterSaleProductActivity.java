@@ -81,7 +81,7 @@ public class RegisterSaleProductActivity extends BaseActivity {
                                     RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
                                     MultipartBody.Part body = MultipartBody.Part.createFormData("userfile", file.getName(), reqFile);
                                     RequestBody description = RequestBody.create(MediaType.parse("text/plain"), "upload_test");
-                                    APIClient.getInstance().create(UploadImageRequest.class).uploadImage(body, "3")
+                                    APIClient.getInstance().create(UploadImageRequest.class).uploadImage(body, response.body().getMessage())
                                             .enqueue(new Callback<SuccessResponse>() {
                                                 @Override
                                                 public void onResponse(Call<SuccessResponse> call, Response<SuccessResponse> response) {

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ProductInfoActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="211dp"
+        tools:layout_editor_absoluteY="267dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/item_image"
+                    android:layout_width="250dp"
+                    android:layout_height="400dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/c" />
+                <TextView
+                    android:id="@+id/itemdetail_text"
+                    android:layout_below="@+id/item_image"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/global_color"
+                    android:layout_marginBottom="30dp"
+                    android:textSize="18dp"
+                    />
+            </RelativeLayout>
+
+        </ScrollView>
+
+        <SlidingDrawer
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:content="@id/content"
+            android:handle="@id/handle"
+            android:orientation="vertical">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="detail"
+                android:background="@color/global_color"
+                android:textColor="@color/button_text_color"
+                android:id="@+id/handle"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/content"
+                android:background="#ffffff"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="옵션"
+                    android:textColor="@color/global_color"
+                    android:textSize="18dp"
+                    />
+
+                <CheckBox
+                    android:id="@+id/option1_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="option1"
+                    android:textColor="@color/global_color"
+                    android:textSize="18dp"/>
+
+                <CheckBox
+                    android:id="@+id/option2_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="option2"
+                    android:textColor="@color/global_color"
+                    android:textSize="18dp"/>
+
+                <CheckBox
+                    android:id="@+id/option3_radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="option3"
+                    android:textColor="@color/global_color"
+                    android:textSize="18dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+                    <ImageButton
+                        android:id="@+id/minus_btn"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@color/button_text_color"
+                        android:src="@drawable/minuscount" />
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:background="@color/button_text_color"
+                        android:textSize="18dp"
+                        android:textAlignment="center"
+                        android:id="@+id/tv_productinfo_count"
+                        />
+                    <ImageButton
+                        android:id="@+id/plus_btn"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@color/button_text_color"
+                        android:src="@drawable/pluscount"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="가격"
+                    android:textColor="@color/global_color"
+                    android:textSize="30dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textSize="40dp"
+                    android:id="@+id/tv_productinfo_price"
+                    />
+                <Button
+                    android:id="@+id/order_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:background="@color/global_color"
+                    android:textColor="@color/button_text_color"
+                    android:layout_margin="20dp"
+                    android:text="주문하기" />
+            </LinearLayout>
+        </SlidingDrawer>
+
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

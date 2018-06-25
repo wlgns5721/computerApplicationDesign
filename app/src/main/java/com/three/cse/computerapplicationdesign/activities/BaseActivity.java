@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.three.cse.computerapplicationdesign.MainPageActivity;
 import com.three.cse.computerapplicationdesign.R;
+import com.three.cse.computerapplicationdesign.response.SaleProduct;
 
 public class BaseActivity extends AppCompatActivity {
     protected android.support.v7.app.ActionBar actionBar;

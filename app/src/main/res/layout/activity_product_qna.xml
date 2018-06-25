@@ -12,5 +12,4 @@
         android:layout_height="match_parent"
         android:id="@+id/product_qna_web_view">
     </WebView>
-
 </android.support.constraint.ConstraintLayout>

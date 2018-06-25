@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.FinshOrderActivity">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_order_result_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_order_result_count"
+        android:layout_centerHorizontal="true"
+        android:textSize="18dp"
+        android:text="이름"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="18dp"
+        android:text="갯수"
+        android:layout_above="@+id/tv_order_result_price"
+        android:id="@+id/tv_order_result_count"
+        />
+    <TextView
+        android:id="@+id/tv_order_result_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/successmessage_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:textSize="18dp"
+        android:text="총 가격"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/successmessage_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/toMain_btn"
+        android:layout_marginBottom="15dp"
+        android:textColor="@color/global_color"
+        android:textSize="25dp"
+        android:text="주문이 완료되었습니다."/>
+
+    <Button
+        android:id="@+id/toMain_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:text=" 메인페이지로 이동 "
+        android:textSize="15dp"
+        android:background="@color/global_color"
+        android:textColor="@color/button_text_color"
+        />
+
+</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
