@@ -32,6 +32,8 @@
                     android:layout_centerHorizontal="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/global_color"
+                    android:textSize="18dp"
                     />
             </RelativeLayout>
 
@@ -47,6 +49,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="detail"
+                android:background="@color/global_color"
+                android:textColor="@color/button_text_color"
                 android:id="@+id/handle"/>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -73,22 +77,52 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:text="option1" />
+                        android:text="option1"
+                        android:textColor="@color/global_color"
+                        android:textSize="18dp"/>
 
                     <RadioButton
                         android:id="@+id/option2_radio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="option2" />
+                        android:text="option2"
+                        android:textColor="@color/global_color"
+                        android:textSize="18dp"/>
 
                     <RadioButton
                         android:id="@+id/option3_radio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="option3" />
+                        android:text="option3"
+                        android:textColor="@color/global_color"
+                        android:textSize="18dp"/>
 
                 </RadioGroup>
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/minus_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/button_text_color"
+                        android:text="-" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:background="@color/button_text_color"
+                        android:textSize="18dp"
+                        android:id="@+id/itemcount_text"
+                        />
+                    <Button
+                        android:id="@+id/plus_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/button_text_color"
+                        android:text="+" />
+                </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -108,6 +142,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
+                    android:background="@color/global_color"
+                    android:textColor="@color/button_text_color"
                     android:text="order" />
             </LinearLayout>
         </SlidingDrawer>
