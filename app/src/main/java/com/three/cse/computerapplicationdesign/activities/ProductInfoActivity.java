@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -34,8 +35,8 @@ public class ProductInfoActivity extends BaseActivity {
         itemCount = 1;
 
         Button order_btn = (Button) findViewById(R.id.order_btn);
-        Button minus_btn = (Button) findViewById(R.id.minus_btn);
-        Button plus_btn = (Button) findViewById(R.id.plus_btn);
+        ImageButton minus_btn = (ImageButton) findViewById(R.id.minus_btn);
+        ImageButton plus_btn = (ImageButton) findViewById(R.id.plus_btn);
         ImageView imageView = (ImageView) findViewById(R.id.item_image);
 
         final TextView itemDetail_text = (TextView) findViewById(R.id.itemdetail_text);
@@ -59,7 +60,7 @@ public class ProductInfoActivity extends BaseActivity {
                     if (itemCount > 1)
                         itemCount--;
                     itemCount_text.setText(String.valueOf(itemCount));
-                    itemPrice_text.setText(String.valueOf(Integer.parseInt(detailInfo.getPrice()) * itemCount) + "원");
+                    itemPrice_text.setText(String.valueOf((Integer.parseInt(detailInfo.getPrice())+optionPrice) * itemCount)+"원");
                 }
                 return true;
             }
@@ -71,7 +72,7 @@ public class ProductInfoActivity extends BaseActivity {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     itemCount++;
                     itemCount_text.setText(String.valueOf(itemCount));
-                    itemPrice_text.setText(String.valueOf(Integer.parseInt(detailInfo.getPrice() + optionPrice) * itemCount));
+                    itemPrice_text.setText(String.valueOf((Integer.parseInt(detailInfo.getPrice())+optionPrice) * itemCount)+"원");
                 }
                 return true;
             }
@@ -84,7 +85,7 @@ public class ProductInfoActivity extends BaseActivity {
                     optionPrice += Integer.parseInt(detailInfo.getOption1price());
                 else
                     optionPrice -= Integer.parseInt(detailInfo.getOption1price());
-                itemPrice_text.setText(String.valueOf(Integer.parseInt(detailInfo.getPrice() + optionPrice) * itemCount));
+                itemPrice_text.setText(String.valueOf((Integer.parseInt(detailInfo.getPrice())+optionPrice) * itemCount)+"원");
             }
         });
 
@@ -95,7 +96,7 @@ public class ProductInfoActivity extends BaseActivity {
                     optionPrice += Integer.parseInt(detailInfo.getOption2price());
                 else
                     optionPrice -= Integer.parseInt(detailInfo.getOption2price());
-                itemPrice_text.setText(String.valueOf(Integer.parseInt(detailInfo.getPrice() + optionPrice) * itemCount));
+                itemPrice_text.setText(String.valueOf((Integer.parseInt(detailInfo.getPrice())+optionPrice) * itemCount)+"원");
             }
         });
 
@@ -106,16 +107,17 @@ public class ProductInfoActivity extends BaseActivity {
                     optionPrice += Integer.parseInt(detailInfo.getOption3price());
                 else
                     optionPrice -= Integer.parseInt(detailInfo.getOption3price());
-                itemPrice_text.setText(String.valueOf(Integer.parseInt(detailInfo.getPrice() + optionPrice) * itemCount));
+                itemPrice_text.setText(String.valueOf((Integer.parseInt(detailInfo.getPrice())+optionPrice) * itemCount)+"원");
             }
         });
 
 
-        itemDetail_text.setText("제품명 : " + detailInfo.getProductname() + "\n" +
-                "가격 : " + detailInfo.getPrice() + "\n" +
+        itemDetail_text.setText("제품명 : " + detailInfo.getProductname() + "\n\n" +
+                "가격 : " + detailInfo.getPrice() + "원\n\n" +
+                "재고 : " + detailInfo.getCount()+"개\n\n"+
                 "옵션1 : " + detailInfo.getOption1() + " - 가격 : +" + detailInfo.getOption1price() + "\n" +
                 "옵션2 : " + detailInfo.getOption2() + " - 가격 : +" + detailInfo.getOption2price() + "\n" +
-                "옵션3 : " + detailInfo.getOption3() + " - 가격 : +" + detailInfo.getOption3price() + "\n"
+                "옵션3 : " + detailInfo.getOption3() + " - 가격 : +" + detailInfo.getOption3price() + "\n\n"
         );
 
         order_btn.setOnClickListener(new View.OnClickListener() {
@@ -129,7 +131,7 @@ public class ProductInfoActivity extends BaseActivity {
                     detailInfo.setOption2("");
                 if (!option3_radio.isChecked())
                     detailInfo.setOption3("");
-
+                detailInfo.setPrice(String.valueOf((Integer.parseInt(detailInfo.getPrice())+optionPrice) * itemCount));
                 intent.putExtra("product", detailInfo);
                 finish();
                 startActivity(intent);
