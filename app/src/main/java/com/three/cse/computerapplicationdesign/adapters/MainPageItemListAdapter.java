@@ -76,7 +76,7 @@ public class MainPageItemListAdapter extends RecyclerView.Adapter<MainPageItemLi
     public void addMainPageItemInfo(MainPageItem info) {
         MainPageItemList.add(info);
     }
-    public void clearSearchInfo() {
+    public void clearMainPageItemInfo() {
         MainPageItemList.clear();
     }
     public void addImage(Bitmap bitmap) {
