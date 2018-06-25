@@ -5,23 +5,19 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-/**
- * Created by Ji Hoon on 2018-06-25.
- */
-
-public class DetailInfoResponse {
+public class MainPageItemResponse {
     @SerializedName("message")
     @Expose
-    private List<DetailInfo> message = null;
+    private List<List<String>> message = null;
     @SerializedName("status")
     @Expose
     private Integer status;
 
-    public List<DetailInfo> getDetailInfo() {
+    public List<List<String>> getMessage() {
         return message;
     }
 
-    public void setDetailInfo(List<DetailInfo> message) {
+    public void setMessage(List<List<String>> message) {
         this.message = message;
     }
 

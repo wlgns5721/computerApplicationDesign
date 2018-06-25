@@ -1,55 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MainPageActivity"
     tools:showIn="@layout/app_bar_main_page">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <EditText
+            android:id="@+id/main_page_keyword"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="12dp"
+            android:hint="검색어를 입력하세요" />
 
-        <LinearLayout
+        <Button
+            android:id="@+id/main_page_search_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <EditText
-                android:layout_width="299dp"
-                android:layout_height="wrap_content"
-                android:hint="검색어를 입력하세요."
-                android:id="@+id/main_page_keyword"/>
-
-                <Button
-                    android:id="@+id/main_page_search_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@color/global_color"
-                    android:textColor="#ffffff"
-                    android:text="검색"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/main_page_keyword"
-                    app:layout_constraintTop_toTopOf="parent" />
-        </LinearLayout>
-
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:src="@drawable/main_page_product_image"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/global_color"
+            android:text="검색" />
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/global_color"
+        android:textSize="30dp"
+        android:text="베스트 상품" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/lv_main_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+</LinearLayout>
