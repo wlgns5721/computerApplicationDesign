@@ -22,6 +22,7 @@ public class OrderActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        actionBar.setTitle("주문페이지");
         setContentView(R.layout.activity_order);
 
         Intent intent = new Intent(this.getIntent());
@@ -33,16 +34,17 @@ public class OrderActivity extends BaseActivity {
         TextView itemPrice_text = (TextView) findViewById(R.id.itemprice_text);
         String option = "";
         itemName_text.setText(product.getProductname());
-        itemCount_text.setText(product.getCount()+"원");
+        itemCount_text.setText(product.getCount()+"개");
         if(!product.getOption1().equals(""))
-            option=product.getOption1();
-        else if(!product.getOption2().equals(""))
-            option=product.getOption2();
-        else if(!product.getOption3().equals(""))
-            option=product.getOption3();
-
+            option+=product.getOption1()+"\n";
+        if(!product.getOption2().equals(""))
+            option+=product.getOption2()+"\n";
+        if(!product.getOption3().equals(""))
+            option+=product.getOption3()+"\n";
+        if(option.equals(""))
+            option="선택한 옵션이 없습니다.";
         itemOption_text.setText(option);
-        itemPrice_text.setText(product.getPrice());
+        itemPrice_text.setText(product.getPrice()+"원");
 
         Button orderFinal_btn = (Button)findViewById(R.id.orderFinal_btn);
 
