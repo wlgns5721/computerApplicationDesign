@@ -8,6 +8,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.view.View;
 import android.content.Intent;
+import android.widget.TextView;
 
 import com.three.cse.computerapplicationdesign.R;
 import com.three.cse.computerapplicationdesign.response.DetailInfo;
@@ -35,6 +36,7 @@ public class ProductInfoActivity  extends BaseActivity {
         final TextView itemPrice_text = (TextView)findViewById(R.id.itemprice_text);
 
         final RadioGroup option_radiogroup = (RadioGroup)findViewById(R.id.option_radiogroup);
+
 
         final RadioButton option1_radio = (RadioButton)findViewById(R.id.option1_radio);
         final RadioButton option2_radio = (RadioButton)findViewById(R.id.option2_radio);
