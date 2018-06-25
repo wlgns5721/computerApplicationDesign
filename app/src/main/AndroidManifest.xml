@@ -20,16 +20,23 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.RegisterSaleProductActivity" />
-        <activity android:name=".activities.SaleProductListActivity">
+        <activity android:name=".activities.SaleProductListActivity"/>
+        <activity android:name=".activities.ModifySaleProductActivity" />
+        <activity android:name=".activities.BaseActivity" />
+        <activity android:name=".OrderListActivity" />
+        <activity android:name=".ProductQnaActivity"/>
+        <activity
+            android:name=".MainPageActivity"
+            android:label="@string/title_activity_main_page"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".LoginActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ModifySaleProductActivity" />
-        <activity android:name=".activities.BaseActivity" />
-        <activity android:name=".LoginActivity" />
         <activity
             android:name=".SellerMainPageActivity"
             android:label="@string/title_activity_seller_main_page"

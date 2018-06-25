@@ -7,9 +7,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.app.DatePickerDialog;
 
 import com.three.cse.computerapplicationdesign.adapters.OrderListAdapter;
 import com.three.cse.computerapplicationdesign.requests.OrderInfoRequest;
@@ -17,6 +19,9 @@ import com.three.cse.computerapplicationdesign.response.OrderInfoResponse;
 import com.three.cse.computerapplicationdesign.utils.APIClient;
 
 import org.w3c.dom.Text;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,23 +31,52 @@ public class OrderListActivity extends AppCompatActivity {
 
     private OrderListAdapter mAdapter;
 
-    EditText searchStartDate;
-    EditText searchEndDate;
+    Button searchStartDate;
+    Button searchEndDate;
     Button orderListResultButton;
+
+    int startYear, startMonth, startDate, lastYear, lastMonth, lastDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_list);
 
-        searchStartDate = (EditText) findViewById(R.id.search_start_date);
-        searchEndDate = (EditText) findViewById(R.id.search_end_date);
+        searchStartDate = (Button) findViewById(R.id.search_start_date);
+        searchEndDate = (Button) findViewById(R.id.search_end_date);
+
+        final Calendar startCalendar = Calendar.getInstance();
+        final Calendar lastCalendar = Calendar.getInstance();
+
+        startYear = startCalendar.get(Calendar.YEAR);
+        startMonth = startCalendar.get(Calendar.MONTH);
+        startDate = startCalendar.get(Calendar.DAY_OF_MONTH);
+
+        lastYear = lastCalendar.get(Calendar.YEAR);
+        lastMonth = lastCalendar.get(Calendar.MONTH);
+        lastDate = lastCalendar.get(Calendar.DAY_OF_MONTH);
+
+        searchStartDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(OrderListActivity.this, dateSetListener1, startYear, startMonth, startDate).show();
+                updateStartDate(startYear, startMonth, startDate);
+            }
+        });
+
+        searchEndDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(OrderListActivity.this, dateSetListener2, lastYear, lastMonth, lastDate).show();
+                updateEndDate(lastYear, lastMonth, lastDate);
+            }
+        });
 
         RecyclerView orderListRecyclerView = (RecyclerView) findViewById(R.id.order_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
 
         orderListRecyclerView.setHasFixedSize(true);
-        orderListRecyclerView.setLayoutManager(layoutManager); 
+        orderListRecyclerView.setLayoutManager(layoutManager);
         orderListRecyclerView.setAdapter(mAdapter);
 
         orderListResultButton = (Button) findViewById(R.id.order_list_result);
@@ -52,6 +86,36 @@ public class OrderListActivity extends AppCompatActivity {
                 requestOrderInfo();
             }
         });
+    }
+
+    private DatePickerDialog.OnDateSetListener dateSetListener1 = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+            startYear = year;
+            startMonth = month + 1;
+            startDate = day;
+            updateStartDate(startYear, startMonth, startDate);
+        }
+    };
+
+    private DatePickerDialog.OnDateSetListener dateSetListener2 = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+            lastYear = year;
+            lastMonth = month + 1;
+            lastDate = day;
+            updateEndDate(lastYear, lastMonth, lastDate);
+        }
+    };
+
+    private void updateStartDate(int year, int month, int date) {
+        String str = year + "/" + (month) + "/" + date;
+        searchStartDate.setText(str);
+    }
+
+    private void updateEndDate(int year, int month, int date) {
+        String str = year + "/" + (month) + "/" + date;
+        searchEndDate.setText(str);
     }
 
 
@@ -78,4 +142,6 @@ public class OrderListActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
 }

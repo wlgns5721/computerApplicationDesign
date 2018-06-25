@@ -19,16 +19,16 @@ public class LoginActivity extends AppCompatActivity {
         customerLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent searchResultIntent = new Intent(LoginActivity.this, MainPageActivity.class);
-                startActivity(searchResultIntent);
+                Intent customerLoginIntent = new Intent(LoginActivity.this, MainPageActivity.class);
+                startActivity(customerLoginIntent);
             }
         });
 
         sellerLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent searchResultIntent = new Intent(LoginActivity.this, SellerMainPageActivity.class);
-                startActivity(searchResultIntent);
+                Intent sellerLoginIntent = new Intent(LoginActivity.this, SellerMainPageActivity.class);
+                startActivity(sellerLoginIntent);
             }
         });
     }
