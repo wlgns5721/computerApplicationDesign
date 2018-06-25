@@ -31,6 +31,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListViewHolder> 
         holder.getProductQuantity().setText("주문수량 : "+orderList.get(position).getCount()+"개");
     }
 
+    @Override
     public int getItemCount() {
         return orderList.size();
     }

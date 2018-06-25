@@ -42,10 +42,7 @@ public class BaseActivity extends AppCompatActivity {
         switch(id) {
             case android.R.id.home:
                 Intent homeIntent;
-                if(isSeller==true)
-                    homeIntent = new Intent(this, SellerMainPageActivity.class);
-                else
-                    homeIntent = new Intent(this, MainPageActivity.class);
+                homeIntent = new Intent(this, MainPageActivity.class);
                 homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(homeIntent);
                 return true;

@@ -10,6 +10,9 @@
         <item
             android:id="@+id/nav_product_qna"
             android:title="Product QNA" />
+        <item
+            android:id="@+id/nav_seller_page"
+            android:title="Seller Page" />
     </group>
 
 

@@ -1,5 +1,6 @@
 package com.three.cse.computerapplicationdesign;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,6 +20,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.three.cse.computerapplicationdesign.activities.BaseActivity;
+import com.three.cse.computerapplicationdesign.activities.SaleProductListActivity;
 import com.three.cse.computerapplicationdesign.activities.SearchResultActivity;
 import com.three.cse.computerapplicationdesign.adapters.MainPageItemListAdapter;
 import com.three.cse.computerapplicationdesign.requests.DownloadImageRequest;
@@ -74,6 +77,8 @@ public class MainPageActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        if(!BaseActivity.isSeller)
+            navigationView.getMenu().findItem(R.id.nav_seller_page).setVisible(false);
     }
 
     @Override
@@ -120,6 +125,9 @@ public class MainPageActivity extends AppCompatActivity
         } else if (id == R.id.nav_product_qna) {
             Intent productQnaIntent = new Intent(MainPageActivity.this, ProductQnaActivity.class);
             startActivity(productQnaIntent);
+        } else if (id == R.id.nav_seller_page) {
+            Intent orderListIntent = new Intent(MainPageActivity.this, SaleProductListActivity.class);
+            startActivity(orderListIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
