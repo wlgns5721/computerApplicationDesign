@@ -58,7 +58,7 @@ public class MainPageActivity extends AppCompatActivity
 
         searchProduct();
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.iv_main_page_item_image);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.lv_main_search);
         GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),2);
 
         recyclerView.setLayoutManager(layoutManager);
