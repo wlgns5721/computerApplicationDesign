@@ -26,10 +26,10 @@ public class FinishOrderActivity extends BaseActivity {
         TextView tvProductTotalPrice = (TextView)findViewById(R.id.tv_order_result_price);
         TextView tvSuccess = (TextView)findViewById(R.id.successmessage_text);
 
-        Integer totalPrice = Integer.parseInt(orderInfo.getCount())*Integer.parseInt(orderInfo.getPrice());
+
         tvProductName.setText("제품 이름 : " + orderInfo.getProductname());
         tvProductCount.setText("수량 : "+orderInfo.getCount()+"개");
-        tvProductTotalPrice.setText("총 가격 : "+totalPrice.toString()+"원");
+        tvProductTotalPrice.setText("총 가격 : "+orderInfo.getPrice()+"원");
 
         String isSuccess = intent.getStringExtra("result");
         if(isSuccess.equals("0")) {

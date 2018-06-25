@@ -1,5 +1,6 @@
 package com.three.cse.computerapplicationdesign.activities;
 
+import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.three.cse.computerapplicationdesign.R;
 import com.three.cse.computerapplicationdesign.adapters.SearchAdapter;
+import com.three.cse.computerapplicationdesign.databinding.ActivitySearchResultBinding;
 import com.three.cse.computerapplicationdesign.requests.DownloadImageRequest;
 import com.three.cse.computerapplicationdesign.requests.SearchRequest;
 import com.three.cse.computerapplicationdesign.response.SearchResponse;
@@ -31,11 +33,13 @@ import retrofit2.Response;
 public class SearchResultActivity extends BaseActivity {
     private SearchAdapter mAdapter;
     private ProgressBar progressBar;
+    private ActivitySearchResultBinding mBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         actionBar.setTitle("검색 결과");
         setContentView(R.layout.activity_search_result);
+        mBinding = DataBindingUtil.setContentView(this,R.layout.activity_search_result);
         progressBar = (ProgressBar)findViewById(R.id.progressbar);
         progressBar.setVisibility(View.GONE);
         Button search_btn = (Button)findViewById(R.id.search_btn);
@@ -52,7 +56,17 @@ public class SearchResultActivity extends BaseActivity {
             @Override
             public void onClick(View v)
             {
-                searchProduct(searchString_text);
+                switch(mBinding.rgSearch.getCheckedRadioButtonId()) {
+                    case R.id.rb_recent:
+                        searchProductByRecent(searchString_text);
+                        break;
+                    case R.id.rb_order:
+                        searchProductByOrder(searchString_text);
+                        break;
+                    default:
+                        searchProduct(searchString_text);
+                        break;
+                }
             }
         });
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.lv_search_result);
@@ -94,46 +108,7 @@ public class SearchResultActivity extends BaseActivity {
                 .enqueue(new Callback<SearchResponse>() {
                     @Override
                     public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
-                        if(!response.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "서버에 연결할 수 없습니다.", Toast.LENGTH_LONG).show();
-                            return;
-                        }
-                        List<List<String>> searchResultList = response.body().getMessage();
-                        final int size = searchResultList.size();
-                        if(size==0)
-                            Toast.makeText(getApplicationContext(),"검색 결과가 없습니다.",Toast.LENGTH_LONG).show();
-                        final int[] count = {0};
-                        for(int i=0; i<size; i++) {
-                            final int index = i;
-                            final SearchResult searchResult = new SearchResult(searchResultList.get(i));
-                            APIClient.getInstance().create(DownloadImageRequest.class).downloadImageRequest(searchResult.getProductid())
-                                    .enqueue(new Callback<ResponseBody>() {
-                                        @Override
-                                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                                            try {
-                                                byte[] bytes = response.body().bytes();
-                                                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-                                                mAdapter.addImage(bitmap);
-                                                mAdapter.addSearchInfo(searchResult);
-
-                                                count[0]++;
-                                                if(count[0]==size) {
-                                                    progressBar.setVisibility(View.GONE);
-                                                    mAdapter.notifyDataSetChanged();
-                                                }
-                                            } catch (IOException e) {
-                                                e.printStackTrace();
-                                            }
-
-                                        }
-
-                                        @Override
-                                        public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-                                        }
-                                    });
-
-                        }
+                        searchLogic(response);
 
                     }
 
@@ -142,5 +117,91 @@ public class SearchResultActivity extends BaseActivity {
                         Toast.makeText(getApplicationContext(),"fail",Toast.LENGTH_LONG).show();
                     }
                 });
+    }
+
+    private void searchProductByRecent(EditText searchString_text) {
+        progressBar.setVisibility(View.VISIBLE);
+        mAdapter.clearSearchInfo();
+        APIClient.getInstance().create(SearchRequest.class).searchProductByRecent(searchString_text.getText().toString())
+                .enqueue(new Callback<SearchResponse>() {
+                    @Override
+                    public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
+                        searchLogic(response);
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<SearchResponse> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),"fail",Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+
+    private void searchProductByOrder(EditText searchString_text) {
+        progressBar.setVisibility(View.VISIBLE);
+        mAdapter.clearSearchInfo();
+        APIClient.getInstance().create(SearchRequest.class).searchProductByOrder(searchString_text.getText().toString())
+                .enqueue(new Callback<SearchResponse>() {
+                    @Override
+                    public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
+                        searchLogic(response);
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<SearchResponse> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),"fail",Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+
+
+
+    private void searchLogic(Response<SearchResponse> response) {
+        if(!response.isSuccessful()) {
+            Toast.makeText(getApplicationContext(), "서버에 연결할 수 없습니다.", Toast.LENGTH_LONG).show();
+            return;
+        }
+        List<List<String>> searchResultList = response.body().getMessage();
+        final int size = searchResultList.size();
+        if(size==0)
+            Toast.makeText(getApplicationContext(),"검색 결과가 없습니다.",Toast.LENGTH_LONG).show();
+        final int[] count = {0};
+        for(int i=0; i<size; i++) {
+            final SearchResult searchResult = new SearchResult(searchResultList.get(i));
+            mAdapter.addSearchInfo(searchResult);
+            mAdapter.addImage();
+            final String pid = searchResult.getProductid();
+            APIClient.getInstance().create(DownloadImageRequest.class).downloadImageRequest(pid)
+                    .enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            try {
+                                byte[] bytes = response.body().bytes();
+                                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+                                for(int s=0; s<size; s++) {
+                                    if(pid.equals(mAdapter.getSearchInfo(s).getProductid())) {
+                                        mAdapter.setImage(s,bitmap);
+                                    }
+                                }
+
+                                count[0]++;
+                                if(count[0]==size) {
+                                    progressBar.setVisibility(View.GONE);
+                                    mAdapter.notifyDataSetChanged();
+                                }
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                        }
+                    });
+
+        }
     }
 }
